@@ -2,3 +2,5 @@ results.json
 results_summarized.json
 prompt.txt
 .env
+venv/
+__pycache__/
