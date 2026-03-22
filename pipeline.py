@@ -30,20 +30,9 @@ If the text is not usable content (e.g. just navigation elements, cookie notices
 SUMMARIZE_MODEL = "google/gemini-3-flash-preview"
 MIN_TEXT_FOR_SUMMARY = 200
 
-PROMPT_TEMPLATE = """You are writing a draft of the next edition of the Digital Minds Newsletter, a curated newsletter covering digital minds, AI consciousness, and moral status.
+DEFAULT_INSTRUCTIONS = """Write the next edition following the structure and style of the previous newsletter. This is a draft that will be reviewed and edited by the newsletter authors.
 
-<articles>
-{articles}
-</articles>
-
-<previous_newsletter>
-{reference_text}
-</previous_newsletter>
-
-<instructions>
-Write the next edition following the structure and style of the previous newsletter. This is a draft that will be reviewed and edited by the newsletter authors.
-
-STRUCTURE (use these exact sections):
+APPROXIMATE STRUCTURE:
 1. Highlights - The most important developments, written in multi-paragraph narrative form. This section is handwritten/editorial in nature.
 2. Field Developments - Updates from specific organizations (use ### subheadings for each org). Include "Highlights From The Field" and "More From The Field" subsections.
 3. Opportunities - Split into:
@@ -113,7 +102,20 @@ FORMAT:
 - Use the correct markdown heading levels (# for title, ## for sections, ### for subsections) to ensure proper formatting when pasted into Substack.
 
 SELF-CHECK:
-- Before finalizing, review the draft for adherence to all the above rules.
+- Before finalizing, review the draft for adherence to all the above rules."""
+
+PROMPT_TEMPLATE = """You are writing a draft of the next edition of the Digital Minds Newsletter, a curated newsletter covering digital minds, AI consciousness, and moral status.
+
+<articles>
+{articles}
+</articles>
+
+<previous_newsletter>
+{reference_text}
+</previous_newsletter>
+
+<instructions>
+{instructions}
 </instructions>"""
 
 
@@ -186,7 +188,9 @@ class NewsletterPipeline:
         done += 1
         yield done, ok_n
 
-  def build_prompt(self, results):
+  def build_prompt(self, results, instructions=None):
+    if instructions is None:
+      instructions = DEFAULT_INSTRUCTIONS
     articles = ""
     for r in results:
       if not r.get("ok") or not r.get("usable", True):
@@ -197,7 +201,11 @@ class NewsletterPipeline:
       articles += f"  <title>{r['title']}</title>\n"
       articles += f"  <summary>\n{summary}\n</summary>\n"
       articles += f"</article>\n"
-    return PROMPT_TEMPLATE.format(reference_text=self.reference_text, articles=articles)
+    return PROMPT_TEMPLATE.format(
+      reference_text=self.reference_text,
+      articles=articles,
+      instructions=instructions,
+    )
 
   def stats(self, results):
     usable = [r for r in results if r.get("ok") and r.get("usable", True)]
