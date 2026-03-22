@@ -1,4 +1,3 @@
-# Run: python main.py
 import json
 from dotenv import load_dotenv
 load_dotenv()
@@ -30,87 +29,10 @@ If the text is not usable content (e.g. just navigation elements, cookie notices
 SUMMARIZE_MODEL = "google/gemini-3-flash-preview"
 MIN_TEXT_FOR_SUMMARY = 200
 
-
-def load_links(path="newsletter-1-links.txt"):
-  with open(path) as f:
-    return [l.strip() for l in f if l.strip()]
-
-
-def summarize_one(url, text):
-  if len(text) < MIN_TEXT_FOR_SUMMARY:
-    return text
-  return llm_ask(SUMMARIZE_PROMPT.format(text=text), model=SUMMARIZE_MODEL, timeout=30)
-
-
-def summarize_all(results, max_links=None, workers=10):
-  results = results[:max_links]
-  out = [{**r, "summary": None} for r in results]
-  ok_results = [(i, r) for i, r in enumerate(results) if r["ok"]]
-
-  with ThreadPoolExecutor(max_workers=workers) as pool:
-    futures = {pool.submit(summarize_one, r["url"], r["text"]): i for i, r in ok_results}
-    for future in as_completed(futures):
-      idx = futures[future]
-      summary = future.result()
-      usable = NO_CONTENT not in (summary or "")
-      out[idx] = {**results[idx], "summary": summary if usable else None, "usable": usable}
-
-  return out
-
-
-def print_unusable(results):
-  bad = [r for r in results if r.get("ok") and not r.get("usable", True)]
-  failed = [r for r in results if not r.get("ok")]
-  if bad or failed:
-    print(f"\n--- Excluded from prompt: {len(bad)} unusable, {len(failed)} failed ---")
-    for r in bad:
-      print(f"  [unusable]  {r['url']}")
-    for r in failed:
-      print(f"  [failed]    {r['url']}")
-    print()
-
-
-def print_table(results):
-  ok_count = sum(1 for r in results if r["ok"])
-  fail_count = len(results) - ok_count
-
-  print(f"\n{'#':>4}  {'Len':>7}  {'OK':>3}  URL")
-  print("-" * 90)
-
-  for i, r in enumerate(results, 1):
-    ok_str = "Y" if r["ok"] else "N"
-    err = f"  ({r['error'][:40]})" if r["error"] else ""
-    print(f"{i:>4}  {r['length']:>7}  {ok_str:>3}  {r['url'][:60]}{err}")
-
-  print("-" * 90)
-  print(f"Total: {len(results)}  |  OK: {ok_count}  |  Failed: {fail_count}\n")
-
-
-def save_results(results, path="results.json"):
-  with open(path, "w") as f:
-    json.dump(results, f, indent=2)
-  print(f"Saved to {path}")
-
-
-def build_prompt(results):
-  with open("newsletter-2-text.txt") as f:
-    newsletter_2_text = f.read().strip()
-
-  articles = ""
-  for i, r in enumerate(results, 1):
-    if not r.get("ok") or not r.get("usable", True):
-      continue
-    summary = r.get("summary") or "(no summary)"
-    articles += f"<article>\n"
-    articles += f"  <url>{r['url']}</url>\n"
-    articles += f"  <title>{r['title']}</title>\n"
-    articles += f"  <summary>\n{summary}\n</summary>\n"
-    articles += f"</article>\n"
-
-  prompt = f"""You are writing a draft of the next edition of the Digital Minds Newsletter, a curated newsletter covering digital minds, AI consciousness, and moral status.
+PROMPT_TEMPLATE = """You are writing a draft of the next edition of the Digital Minds Newsletter, a curated newsletter covering digital minds, AI consciousness, and moral status.
 
 <previous_newsletter>
-{newsletter_2_text}
+{reference_text}
 </previous_newsletter>
 
 <articles>
@@ -163,7 +85,79 @@ WRITING RULES:
 - For events, mention the organizer, location, and dates.
 - For calls for papers, mention the venue and deadline.
 </instructions>"""
-  return prompt
+
+
+class NewsletterPipeline:
+  def __init__(self, reference_text=""):
+    self.reference_text = reference_text
+
+  def summarize_one(self, url, text):
+    if len(text) < MIN_TEXT_FOR_SUMMARY:
+      return text
+    return llm_ask(SUMMARIZE_PROMPT.format(text=text), model=SUMMARIZE_MODEL, timeout=30)
+
+  def summarize_all(self, results, max_links=None, workers=10):
+    results = results[:max_links]
+    out = [{**r, "summary": None} for r in results]
+    ok_results = [(i, r) for i, r in enumerate(results) if r["ok"]]
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+      futures = {pool.submit(self.summarize_one, r["url"], r["text"]): i for i, r in ok_results}
+      for future in as_completed(futures):
+        idx = futures[future]
+        summary = future.result()
+        usable = NO_CONTENT not in (summary or "")
+        out[idx] = {**results[idx], "summary": summary if usable else None, "usable": usable}
+    return out
+
+  def build_prompt(self, results):
+    articles = ""
+    for r in results:
+      if not r.get("ok") or not r.get("usable", True):
+        continue
+      summary = r.get("summary") or "(no summary)"
+      articles += f"<article>\n"
+      articles += f"  <url>{r['url']}</url>\n"
+      articles += f"  <title>{r['title']}</title>\n"
+      articles += f"  <summary>\n{summary}\n</summary>\n"
+      articles += f"</article>\n"
+    return PROMPT_TEMPLATE.format(reference_text=self.reference_text, articles=articles)
+
+
+def load_links(path="newsletter-1-links.txt"):
+  with open(path) as f:
+    return [l.strip() for l in f if l.strip()]
+
+
+def print_unusable(results):
+  bad = [r for r in results if r.get("ok") and not r.get("usable", True)]
+  failed = [r for r in results if not r.get("ok")]
+  if bad or failed:
+    print(f"\n--- Excluded from prompt: {len(bad)} unusable, {len(failed)} failed ---")
+    for r in bad:
+      print(f"  [unusable]  {r['url']}")
+    for r in failed:
+      print(f"  [failed]    {r['url']}")
+    print()
+
+
+def print_table(results):
+  ok_count = sum(1 for r in results if r["ok"])
+  fail_count = len(results) - ok_count
+  print(f"\n{'#':>4}  {'Len':>7}  {'OK':>3}  URL")
+  print("-" * 90)
+  for i, r in enumerate(results, 1):
+    ok_str = "Y" if r["ok"] else "N"
+    err = f"  ({r['error'][:40]})" if r["error"] else ""
+    print(f"{i:>4}  {r['length']:>7}  {ok_str:>3}  {r['url'][:60]}{err}")
+  print("-" * 90)
+  print(f"Total: {len(results)}  |  OK: {ok_count}  |  Failed: {fail_count}\n")
+
+
+def save_results(results, path="results.json"):
+  with open(path, "w") as f:
+    json.dump(results, f, indent=2)
+  print(f"Saved to {path}")
+
 
 if __name__ == "__main__":
   urls = load_links()
@@ -172,11 +166,15 @@ if __name__ == "__main__":
   results = fetch_all(urls, max_links=max_links)
   print_table(results)
   save_results(results)
-  # exit()
-  results = summarize_all(results, max_links=max_links)
+
+  with open("newsletter-2-text.txt") as f:
+    reference_text = f.read().strip()
+  pipeline = NewsletterPipeline(reference_text)
+
+  results = pipeline.summarize_all(results, max_links=max_links)
   save_results(results, "results_summarized.json")
 
-  prompt = build_prompt(results)
+  prompt = pipeline.build_prompt(results)
   print_unusable(results)
   with open("prompt.txt", "w") as f:
     f.write(prompt)

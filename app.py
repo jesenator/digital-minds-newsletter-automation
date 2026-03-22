@@ -5,13 +5,19 @@ load_dotenv()
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from scraper import fetch_one
-from main import summarize_one, build_prompt, NO_CONTENT
+from pipeline import NewsletterPipeline, NO_CONTENT
+
+DEFAULT_REFERENCE_URL = "https://www.digitalminds.news/p/the-vatican-ai-legal-personhood-and"
 
 st.set_page_config(page_title="Digital Minds Newsletter", layout="wide")
 st.title("Digital Minds Newsletter Builder")
 
 max_links = st.sidebar.slider("Max links", 10, 500, 100)
-workers = st.sidebar.slider("Parallel workers", 1, 30, 15)
+
+reference_url = st.text_input(
+  "Reference newsletter URL (scraped for style/context)",
+  value=DEFAULT_REFERENCE_URL,
+)
 
 links_text = st.text_area("Paste links (one per line)", height=250)
 uploaded = st.file_uploader("Or upload a .txt file with links", type=["txt"])
@@ -26,10 +32,22 @@ if st.button("Run Pipeline", type="primary", use_container_width=True):
   urls = urls[:max_links]
   n = len(urls)
 
+  reference_text = ""
+  if reference_url.strip():
+    with st.spinner("Scraping reference newsletter..."):
+      ref = fetch_one(reference_url.strip())
+      if ref["ok"]:
+        reference_text = ref["text"]
+        st.success(f"Reference newsletter scraped ({ref['length']:,} chars)")
+      else:
+        st.warning(f"Could not scrape reference newsletter: {ref['error']}")
+
+  pipeline = NewsletterPipeline(reference_text)
+
   progress = st.progress(0, text=f"Fetching 0/{n}...")
   results = [None] * n
   done = 0
-  with ThreadPoolExecutor(max_workers=workers) as pool:
+  with ThreadPoolExecutor(max_workers=15) as pool:
     futs = {pool.submit(fetch_one, u): i for i, u in enumerate(urls)}
     for f in as_completed(futs):
       results[futs[f]] = f.result()
@@ -42,16 +60,17 @@ if st.button("Run Pipeline", type="primary", use_container_width=True):
 
   out = [{**r, "summary": None} for r in results]
   done = 0
-  progress.progress(0.5, text=f"Summarizing 0/{ok_n}...")
-  with ThreadPoolExecutor(max_workers=min(workers, 10)) as pool:
-    futs = {pool.submit(summarize_one, r["url"], r["text"]): i for i, r in ok_items}
-    for f in as_completed(futs):
-      idx = futs[f]
-      summary = f.result()
-      usable = NO_CONTENT not in (summary or "")
-      out[idx] = {**results[idx], "summary": summary if usable else None, "usable": usable}
-      done += 1
-      progress.progress(0.5 + done / ok_n * 0.5, text=f"Summarizing {done}/{ok_n}...")
+  if ok_n > 0:
+    progress.progress(0.5, text=f"Summarizing 0/{ok_n}...")
+    with ThreadPoolExecutor(max_workers=10) as pool:
+      futs = {pool.submit(pipeline.summarize_one, r["url"], r["text"]): i for i, r in ok_items}
+      for f in as_completed(futs):
+        idx = futs[f]
+        summary = f.result()
+        usable = NO_CONTENT not in (summary or "")
+        out[idx] = {**results[idx], "summary": summary if usable else None, "usable": usable}
+        done += 1
+        progress.progress(0.5 + done / ok_n * 0.5, text=f"Summarizing {done}/{ok_n}...")
 
   results = out
   progress.progress(1.0, text="Done!")
@@ -72,8 +91,8 @@ if st.button("Run Pipeline", type="primary", use_container_width=True):
       for r in failed:
         st.text(f"[failed]    {r['url']}")
 
-  prompt = build_prompt(results)
+  prompt = pipeline.build_prompt(results)
 
   st.subheader("Generated Prompt")
-  st.text_area("", prompt, height=400, key="prompt_output")
+  st.code(prompt, language=None, wrap_lines=True)
   st.download_button("Download prompt.txt", prompt, file_name="prompt.txt", use_container_width=True)
