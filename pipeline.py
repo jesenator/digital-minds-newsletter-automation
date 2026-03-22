@@ -70,11 +70,8 @@ STRUCTURE (use these exact sections):
    - Brain-Inspired Technologies
 
 WRITING RULES:
-- The above structures is a guide. Especially for the sub sections, you can use your judgement to determine the best structure.
-- Use people's full names on first mention, then last name only.
-- Write in present tense (e.g. "argues" not "argued").
-- Ouput the article in a artifact using markdown formatting
-  - Use markdown formatting for with inline links: [anchor text](url)
+- The above structure is a guide. Especially for the sub sections, you can use your judgement to determine the best structure.
+- Output the article using markdown formatting with inline links: [anchor text](url)
 - Each entry in the deeper dive sections should be 1-2 sentences with a link.
 - Group related items together (e.g. multiple posts from the same author/blog).
 - An article may appear in both the Selected Reading section AND the Deeper Dive section if relevant.
@@ -85,6 +82,38 @@ WRITING RULES:
 - For job/fellowship listings, mention the organization, what the role is, and link to apply.
 - For events, mention the organizer, location, and dates.
 - For calls for papers, mention the venue and deadline.
+
+NAMING AND ATTRIBUTION:
+- Always mention first names of authors on first reference, then last name only after.
+- Use the name that researchers publish under (e.g. "Robert Long" not "Rob Long").
+- Say "and collaborators" instead of "et al." or "and colleagues".
+
+STYLE AND LANGUAGE:
+- Write in present tense when describing what is said in written work (e.g. "argues" not "argued").
+- Use "and" rather than "&" in writing.
+- Use "and" to mark the last item in lists (for audio readability).
+- Write in complete sentences throughout.
+- Use "post" rather than "article" when referring to blog posts.
+- Reserve "published" for non-blog venues (journals, books, reports, etc.).
+- Avoid using the word "assert".
+- Avoid language that implies endorsement of disputable claims.
+- Avoid making predictions, including for mundane things. Instead of saying something "will be released", say it "is set for release".
+
+LINKING:
+- When linking to papers, link to the webpage where you can find them (e.g. the journal or repository page), not directly to the PDF.
+- When linking to books, link to the publisher's page rather than Amazon or another vendor.
+- Convert links into sentences that convey the key idea from the piece.
+
+BOOKS SECTION:
+- List published books first, followed by not-yet-published books.
+- Note that "not yet published" is not the same as "forthcoming" -- use the correct term.
+
+FORMAT:
+- Ensure format uniformity across sections and entries.
+- Use the correct markdown heading levels (# for title, ## for sections, ### for subsections) to ensure proper formatting when pasted into Substack.
+
+SELF-CHECK:
+- Before finalizing, review the draft for adherence to all the above rules.
 </instructions>"""
 
 
