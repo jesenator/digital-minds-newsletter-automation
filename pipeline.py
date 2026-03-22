@@ -207,6 +207,12 @@ class NewsletterPipeline:
       instructions=instructions,
     )
 
+  GENERATE_MODEL = "anthropic/claude-opus-4.6"
+
+  def generate(self, prompt):
+    """Send the assembled prompt to Claude Opus 4.6 and yield partial text as it streams."""
+    return llm_ask(prompt, model=self.GENERATE_MODEL, timeout=600, max_tokens=16000, temperature=0.5)
+
   def stats(self, results):
     usable = [r for r in results if r.get("ok") and r.get("usable", True)]
     unusable = [r for r in results if r.get("ok") and not r.get("usable", True)]

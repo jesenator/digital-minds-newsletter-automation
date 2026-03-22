@@ -1,5 +1,5 @@
 # Run: streamlit run app.py
-import os
+import os, random
 import streamlit as st
 from dotenv import load_dotenv
 load_dotenv()
@@ -44,6 +44,7 @@ with left_col:
   link_sources = ["Paste", "Upload file"]
   if os.path.exists(TEST_LINKS_FILE):
     link_sources.append("Load from newsletter #1")
+    link_sources.append("Test (5 random)")
   link_source = st.radio("Link source", link_sources, horizontal=True)
 
   links_text = ""
@@ -53,6 +54,14 @@ with left_col:
     uploaded = st.file_uploader("Upload a .txt file with links", type=["txt"])
     if uploaded:
       links_text = uploaded.read().decode("utf-8")
+  elif link_source == "Test (5 random)":
+    with open(TEST_LINKS_FILE) as f:
+      all_links = [l.strip() for l in f if l.strip()]
+    sample = random.sample(all_links, min(5, len(all_links)))
+    links_text = "\n".join(sample)
+    st.caption(f"Sampled 5 random links from `{TEST_LINKS_FILE}`:")
+    for link in sample:
+      st.caption(f"  {link}")
   else:
     with open(TEST_LINKS_FILE) as f:
       links_text = f.read()
@@ -111,11 +120,26 @@ if st.button("Run Pipeline", type="primary", use_container_width=True):
 
   prompt = pipeline.build_prompt(results, instructions=instructions)
 
-  header_col, dl_col = st.columns([4, 1])
-  with header_col:
-    st.subheader("Generated Prompt")
-  with dl_col:
-    st.download_button("Download", prompt, file_name="prompt.txt")
-
-  with st.container(height=500):
+  with st.expander("View assembled prompt"):
+    st.download_button("Download prompt", prompt, file_name="prompt.txt")
     st.code(prompt, language=None, wrap_lines=True)
+
+  with st.spinner(f"Generating newsletter draft with Claude Opus 4.6 (this may take a few minutes)..."):
+    draft = pipeline.generate(prompt)
+
+  if draft:
+    header_col, dl_col = st.columns([4, 1])
+    with header_col:
+      st.subheader("Newsletter Draft")
+    with dl_col:
+      st.download_button("Download draft", draft, file_name="newsletter-draft.md")
+
+    tabs = st.tabs(["Rendered", "Raw"])
+    with tabs[0]:
+      with st.container(height=600):
+        st.markdown(draft)
+    with tabs[1]:
+      with st.container(height=600):
+        st.code(draft, language="markdown", wrap_lines=True)
+  else:
+    st.error("Generation failed -- no output returned.")
