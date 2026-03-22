@@ -33,7 +33,7 @@ MIN_TEXT_FOR_SUMMARY = 200
 DEFAULT_INSTRUCTIONS = """Write the next edition following the structure and style of the previous newsletter. This is a draft that will be reviewed and edited by the newsletter authors.
 
 APPROXIMATE STRUCTURE:
-1. Highlights - The most important developments, written in multi-paragraph narrative form. This section is handwritten/editorial in nature.
+1. Highlights - DO NOT WRITE THIS SECTION -- it is handwritten by the editors.
 2. Field Developments - Updates from specific organizations (use ### subheadings for each org). Include "Highlights From The Field" and "More From The Field" subsections.
 3. Opportunities - Split into:
    - Job Opportunities, Funding, and Fellowships (who, what the role/grant is, how to apply)
@@ -57,6 +57,9 @@ APPROXIMATE STRUCTURE:
    - AI Cognition and Agency
    - AI and Robotics Developments
    - Brain-Inspired Technologies
+
+DO NOT WRITE:
+- The welcome/intro paragraph, table of contents, subscribe callouts, header image, closing message, credits/acknowledgments, or things like this. These are added by the editors. Start your output directly with section 2.
 
 WRITING RULES:
 - The above structure is a guide. Especially for the sub sections, you can use your judgement to determine the best structure.
@@ -211,7 +214,7 @@ class NewsletterPipeline:
 
   def generate(self, prompt):
     """Send the assembled prompt to Claude Opus 4.6 and yield partial text as it streams."""
-    return llm_ask(prompt, model=self.GENERATE_MODEL, timeout=600, max_tokens=16000, temperature=0.5)
+    return llm_ask(prompt, model=self.GENERATE_MODEL, timeout=600, max_tokens=128000, temperature=0.5)
 
   def stats(self, results):
     usable = [r for r in results if r.get("ok") and r.get("usable", True)]
