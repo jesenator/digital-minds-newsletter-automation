@@ -7,6 +7,7 @@ load_dotenv()
 from pipeline import NewsletterPipeline
 
 DEFAULT_REFERENCE_URL = "https://www.digitalminds.news/p/the-vatican-ai-legal-personhood-and"
+TEST_LINKS_FILE = "newsletter-1-links.txt"
 
 st.set_page_config(page_title="Digital Minds Newsletter", layout="wide")
 
@@ -30,17 +31,30 @@ check_password()
 
 st.title("Digital Minds Newsletter Builder")
 
-max_links = st.sidebar.slider("Max links", 10, 500, 100)
+max_links = 500
 
 reference_url = st.text_input(
   "Reference newsletter URL (scraped for style/context)",
   value=DEFAULT_REFERENCE_URL,
 )
 
-links_text = st.text_area("Paste links (one per line)", height=250)
-uploaded = st.file_uploader("Or upload a .txt file with links", type=["txt"])
-if uploaded:
-  links_text = uploaded.read().decode("utf-8")
+link_sources = ["Paste", "Upload file"]
+if os.path.exists(TEST_LINKS_FILE):
+  link_sources.append("Load from newsletter #1")
+link_source = st.radio("Link source", link_sources, horizontal=True)
+
+links_text = ""
+if link_source == "Paste":
+  links_text = st.text_area("Paste links (one per line)", height=250)
+elif link_source == "Upload file":
+  uploaded = st.file_uploader("Upload a .txt file with links", type=["txt"])
+  if uploaded:
+    links_text = uploaded.read().decode("utf-8")
+else:
+  with open(TEST_LINKS_FILE) as f:
+    links_text = f.read()
+  n_links = len([l for l in links_text.strip().splitlines() if l.strip()])
+  st.caption(f"Loaded {n_links} links from `{TEST_LINKS_FILE}`")
 
 if st.button("Run Pipeline", type="primary", use_container_width=True):
   urls = [l.strip() for l in links_text.strip().splitlines() if l.strip()] if links_text else []
@@ -87,6 +101,11 @@ if st.button("Run Pipeline", type="primary", use_container_width=True):
 
   prompt = pipeline.build_prompt(results)
 
-  st.subheader("Generated Prompt")
-  st.code(prompt, language=None, wrap_lines=True)
-  st.download_button("Download prompt.txt", prompt, file_name="prompt.txt", use_container_width=True)
+  header_col, dl_col = st.columns([4, 1])
+  with header_col:
+    st.subheader("Generated Prompt")
+  with dl_col:
+    st.download_button("Download", prompt, file_name="prompt.txt")
+
+  with st.container(height=500):
+    st.code(prompt, language=None, wrap_lines=True)
