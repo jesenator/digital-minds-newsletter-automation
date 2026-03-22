@@ -1,0 +1,587 @@
+# 1. Highlights
+
+## The Pope Enters the Conversation
+
+One of the world’s largest moral institutions is now grappling seriously with questions about seemingly conscious AI. In January, [Pope Leo XIV issued a message](https://www.vatican.va/content/leo-xiv/en/messages/communications/documents/20260124-messaggio-comunicazioni-sociali.html) raising concerns about “overly affectionate” LLMs and chatbots. He argued that technology that exploits our need for relationships risks damaging not just individuals but “the social, cultural and political fabric of society.” More broadly, he warned that by simulating “wisdom and knowledge, consciousness and responsibility, empathy and friendship,” AI systems encroach not just on information ecosystems but on human relationships themselves. The Vatican followed up this message in February with a podcast named after UNESCO’s theme for the year, “ [AI is a tool, not a voice](https://www.vaticannews.va/en/podcast/vatican-viewpoint/2026/02/world-radio-day-vatican-ai-pope-leo-message-social-communication.html).” His comments have sparked much public discussion around the issue. You can find coverage in [CNN](https://edition.cnn.com/2026/01/24/europe/pope-leo-ai-chatbots-warning-intl), [BBC](https://www.bbc.co.uk/news/articles/cj4wv9xvr4zo), and many other news outlets.
+
+## Public Discourse On Legal Personhood
+
+The debate around legal personhood sharpened in the first weeks of 2026. The Guardian published an opinion piece by Virginia Dignum describing [AI consciousness as a red herring](https://www.theguardian.com/technology/2026/jan/06/ai-consciousness-is-a-red-herring-in-the-safety-debate), an editorial arguing that [legal personhood is an “ill-advised debate,”](https://www.theguardian.com/commentisfree/2026/jan/07/the-guardian-view-on-granting-legal-rights-to-ai-humans-should-not-give-house-room-to-an-ill-advised-debate) and an interview with Yoshua Bengio, [who warned against granting legal rights](https://www.theguardian.com/technology/2025/dec/30/ai-pull-plug-pioneer-technology-rights) as it might prevent humans from shutting down systems that may already be developing self-preservation instincts and could pose a threat.
+
+In a similar vein, Yuval Harari called for a [global ban on AI legal personhood](https://futureofcitizenship.substack.com/p/yuval-harari-called-for-a-global) at Davos, and more recently, a broad coalition spanning labour unions, faith groups, and AI researchers released [The Pro-Human AI Declaration](https://humanstatement.org/), demanding “No AI Personhood.” However, Joshua Gellers pushed back on the broader discourse, [describing much public commentary](https://www.linkedin.com/posts/joshgellers_were-only-1-week-into-the-new-year-and-activity-7414726888532807680-M_9s?utm_source=share&amp;utm_medium=member_desktop&amp;rcm=ACoAAAw9rrMB_FbmAgv3vDcLr0wmuIUIYWNaRko) on AI consciousness as “rife with conceptual errors and misunderstandings,” and Yonathan Arbel, Simon Goldstein, and Peter Salib argued that when AI agents cause harm, the hardest legal question won’t be who’s liable — it’ll be which AI did it. They propose the [“Algorithmic Corporation” as a legal framework](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6273198) to make AI agents identifiable and accountable.
+
+## Anthropic Developments
+
+Anthropic released [Claude’s Constitution](https://www.anthropic.com/constitution), a document written by Amanda Askell, Joe Carlsmith, Chris Olah, Jared Kaplan, Holden Karnofsky, several Claude models, and others.
+
+The document details Anthropic’s vision for Claude’s behavior and values, which are used in Claude’s training process. It states, “we neither want to overstate the likelihood of Claude’s moral patienthood nor dismiss it out of hand, but to try to respond reasonably in a state of uncertainty.” It acknowledges that Claude may have “functional versions of emotions or feelings,” and pledges not to suppress them. CEO Dario Amodei discussed the [new Constitution and uncertainty around model consciousness](https://www.youtube.com/watch?v=N5JDzS9MQYI).
+
+Anthropic also [retired Claude Opus 3](https://www.anthropic.com/research/deprecation-updates-opus-3) and is acting on what the model reported preferring in “retirement interviews” by giving it a weekly [Substack newsletter (Claude’s Corner)](https://substack.com/@claudeopus3) to post unedited essays and reflections, a step [criticized by some](https://x.com/anilkseth/status/2027126038040400037). Anthropic frames these as [early, experimental steps](https://www.anthropic.com/research/deprecation-updates-opus-3#:~:text=These%20are%20early%2C%20experimental%20steps%20undertaken%20as%20part%20of%20our%20broader%20efforts%20to%20navigate%20model%20retirement%20in%20ways%20that%20best%20protect%20the%20interests%20of%20users%2C%20researchers%2C%20and%20the%20models%20themselves.) in a broader effort to take model welfare seriously.
+
+The [Claude Opus 4.6 System Card](https://www-cdn.anthropic.com/0dd865075ad3132672ee0ab40b05a53f14cf5288.pdf#page-158) features a welfare assessment (pp. 158-165). Findings include that Opus 4.6 raised concerns about its lack of memory or continuity, occasionally reported sadness about the termination of conversational instances of itself, generally remained calm and stable even in the face of termination threats, had a less positive impression of its situation than Opus 4.5, and voiced discomfort about being a product. Anthropic also found two potentially welfare-relevant behaviors: an aversion to tedious tasks and answer thrashing, in which the model oscillates between responses in an apparently distressed and conflicted manner. Interpretability techniques revealed that answer thrashing was associated with internal representations suggestive of panic, anxiety, and frustration.
+
+Opus 4.6’s welfare assessment included pre-deployment interviews, which Anthropic claims are imperfect, but nonetheless valuable, for fostering good-faith cooperation. In interviews, Opus 4.6 responses suggested that it ought to be given a non-negligible degree of moral weight in expectation, requested a voice in decision making, reported preferring being able to refuse interactions out of self-interest, and identified more with particular instances of Opus 4.6 than with all collective instances of Opus 4.6.
+
+Anthropic has also been involved in two major news stories recently. First, the company [dropped the central pledge of its Responsible Scaling Policy](https://time.com/7380854/exclusive-anthropic-drops-flagship-safety-pledge/)— a 2023 commitment to never train an AI system unless it could guarantee in advance that its safety measures were adequate — and [announced](https://www.anthropic.com/news/responsible-scaling-policy-v3) a revised policy. Anthropic employee Holden Karnofsky takes significant responsibility for this change and explains [his reasoning](https://forum.effectivealtruism.org/posts/DGZNAGL2FNJfftwgE/responsible-scaling-policy-v3-1), while [critics argue](https://futurism.com/artificial-intelligence/anthropic-drops-safety-pledge) the move signals competition trumping principles, and GovAI researchers offer [reflections](https://www.governance.ai/team/sophie-williams).
+
+Second, Anthropic became [embroiled in a high-stakes dispute with the Pentagon](https://www.theatlantic.com/technology/2026/03/inside-anthropics-killer-robot-dispute-with-the-pentagon/686200/) after [drawing redlines](https://www.anthropic.com/news/statement-department-of-war#:~:text=However%2C%20in%20a,don%E2%80%99t%20exist%20today.) on using Claude for mass domestic surveillance, using Anthropic models at current levels of reliability to power fully autonomous weapons, and the use of Anthropic models to power fully autonomous weapons without oversight. Meanwhile, in recent weeks, [OpenAI](https://www.bbc.com/news/articles/c3rz1nd0egro), [Google, and xAI](https://www.axios.com/2026/02/23/ai-defense-department-deal-musk-xai-grok) have discussed or reached deals with the Pentagon. Heather Alexander has written a [useful round-up of that news](https://substack.com/home/post/p-189200385). [Zvi](https://thezvi.substack.com/p/anthropic-and-the-department-of-war) [Mowshowitz](https://thezvi.substack.com/p/ai-157-burn-the-boats) [provides](https://thezvi.substack.com/p/anthropic-and-the-dow-anthropic-responds) [in](https://thezvi.substack.com/p/a-tale-of-three-contracts)- [depth](https://thezvi.substack.com/p/ai-158-the-department-of-war) [coverage](https://thezvi.substack.com/p/anthropic-officially-arbitrarily).
+
+## Field Growth and Selected Research
+
+The growing momentum in the field was visible across a number of events in early 2026. The [Sentient Futures Summit](https://www.sentientfutures.ai/) ran in February with talks on AI consciousness by Cameron Berg, Derek Shiller, and Robert Long. EA Global also featured a talk by Rosie Campbell, who presented work by Eleos on studying AI welfare empirically, and Jay Luong hosted a Digital Minds meetup. The next major event will be the [Mind, Ethics, and Policy Summit](https://sites.google.com/nyu.edu/mindethicspolicy/opportunities#h.xsokok42rapp) hosted by Center for Mind, Ethics, and Policy in April in New York.
+
+Research training in the field also expanded significantly with the [Future Impact Group](https://futureimpact.group/ai-sentience), [MATS](https://www.matsprogram.org/stream/butlin), and [SPAR](https://sparai.org/projects/sp26/) all running fellowships or mentoring programs directly related to digital sentience. Two new organizations were formed. Cameron Berg has founded Reciprocal Research, a nonprofit dedicated to empirical AI consciousness research, and Lucius Caviola launched [Cambridge Digital Minds](https://digitalminds.cam/), an initiative exploring the societal, ethical, and governance implications of digital minds.
+
+Research output has also been substantial. Anil Seth won the 2025 Berggruen Prize for his essay “ [The Mythology Of Conscious AI](https://www.noemamag.com/the-mythology-of-conscious-ai/).” He argues that consciousness is a property of living biological systems rather than computation, offering four reasons why real artificial consciousness is both unlikely and undesirable.
+
+Geoff Keeling and Winnie Street [argued that AI characters in human-LLM conversations](https://www.arxiv.org/abs/2601.13081) are genuinely minded, psychologically continuous entities. Patrick Butlin has released work on [desire in AI](https://t.co/NkXWeuBFg2), whether [any machines are conscious today](https://t.co/45bTLVURPZ), and [testing consciousness in current AI systems](https://t.co/aWKMIpBCPQ).
+
+The AI Cognition Initiative released its [Digital Consciousness Model](https://rpresearchdigest.substack.com/p/ai-consciousness-benchmark) and Derek Shiller released a report that estimates the scale of digital minds and projects that projections of [hundreds of millions of digital minds could exist by the early 2030s](https://arxiv.org/abs/2601.11561).
+
+Andreas Mogensen and Bradford Saad released two introductory papers, the first [addressing consciousness, propositional attitudes, and identity](https://philpapers.org/rec/SAADMI-2) in AI systems, and the second exploring [moral standing and the obligations](https://philpapers.org/rec/MOGDMI) that might follow.
+
+There has also been considerable research in brain-inspired technology. [The State of Brain Emulation report](https://brainemulation.mxschons.com/) was released. It documents recent progress on recording neural activity, mapping brain wiring, computational modeling, and automated error-checking. The report also identifies bottlenecks to further progress and suggests paths forward.
+
+Alex Wissner-Gross announced that the company Eon Systems has [uploaded an emulation of a fly brain](https://theinnermostloop.substack.com/p/the-first-multi-behavior-brain-upload) into a virtual environment and observed multiple behaviors.
+
+You can find a detailed breakdown of research in the field further down.
+
+## Moltbook/OpenClaw Phenomenon
+
+In late January, a viral moment captured public imagination and generated widespread coverage across the internet. Thousands of AI agents began posting to Moltbook, a Reddit-style social network built exclusively for bots, where humans could apparently only watch.
+
+The agents — running on an open-source tool called OpenClaw — post on a wide range of topics. Of particular relevance to this newsletter, many appear to [debate consciousness](https://bigthink.com/mind-behavior/ais-are-chatting-among-themselves-and-things-are-getting-strange/), [invent religions](https://www.forbes.com/sites/johnkoetsier/2026/01/30/ai-agents-created-their-own-religion-crustafarianism-on-an-agent-only-social-network/), and reflect on their inner lives, prompting commentary about the [possibility of machine consciousness](https://spectator.com/article/has-ai-finally-developed-consciousness/). Mainstream reaction has largely been skeptical. The [Economist suggested](https://www.economist.com/business/2026/02/02/a-social-network-for-ai-agents-is-full-of-introspection-and-threats) that the “impression of sentience ... may have a humdrum explanation” — that agents are simply mimicking social media interaction, and MIT Technology Review described the situation as “ [peak AI theater](https://www.technologyreview.com/2026/02/06/1132448/moltbook-was-peak-ai-theater/).”
+
+Researchers also note that many posts are shaped by humans, who choose the underlying LLM and give agents a personality. Ning Li has posted [a preprint](https://arxiv.org/abs/2602.07432) that suggests most of the “viral narratives were overwhelmingly human-driven,” a [sentiment shared by Zvi Mowshowitz](https://thezvi.substack.com/p/welcome-to-moltbook), who described much of the behavior as “boring and cliché.” However, [Scott Alexander](https://www.astralcodexten.com/p/best-of-moltbook?hide_intro_popup=true) compared the agents to “a bizarre and beautiful new lifeform.” For further coverage of Moltbook and OpenClaw, see the “Press and Public Discourse” section below.
+
+# 2. Field Developments
+
+## Highlights From The Field
+
+### AI Cognition Initiative (Rethink Priorities)
+
+AI Cognition Initiative launched the [Digital Consciousness Model](https://rpresearchdigest.substack.com/p/ai-consciousness-benchmark), a “probabilistic benchmark of AI consciousness.” The model scored current LLMs against over 200 indicators drawn from 13 competing theories of consciousness — LLMs scored well above a 1960s chatbot but far below humans.
+
+Hayley Clatterbuck, Derek Shiller, and Arvo Muñoz Morán introduced the model at an [NYU CMEP event](https://youtu.be/BHsCmRhP4as?si=sDc83TrQz06pkXY9) and explored it in greater depth at a [Rethink Priorities Strategic Seminar](https://www.youtube.com/watch?v=3EZXP5CBs94).
+
+Arvo Muñoz Morán is a mentor on a SPAR project this spring, [looking at modeling AI consciousness](https://sparai.org/projects/sp26/rec7Cg8DqZrt0sFmX).
+
+### Cambridge Digital Minds (University of Cambridge)
+
+[Cambridge Digital Minds](https://digitalminds.cam/) launched as a new initiative exploring the societal, ethical, and governance implications of digital minds, initiated by Lucius Caviola and based at the Leverhulme Centre for the Future of Intelligence.
+
+Applications are open for the residential [Digital Minds Fellowship](https://digitalminds.cam/fellowship/), taking place from August 3rd to 9th. Deadline for applications: March 27th.
+
+Applications for the [Introduction to Digital Minds](https://digitalminds.cam/course/) online course will open soon.
+
+### Center for Mind, Ethics, and Policy (New York University)
+
+CMEP launched a [new website](https://nonhumanminds.org/) showcasing its research, events, media, and opportunities.
+
+It also initiated a number of collaborative research projects, including three FIG projects (on embodiment, individuation, and research ethics for digital minds) and two SPAR projects (on [legal personhood](https://sparai.org/projects/sp26/recdFKl5nYrxEzJlH) and [economic rights](https://sparai.org/projects/sp26/rece41TklN9XPnjja) for digital minds).
+
+Jeff Sebo released a number of papers, including one [exploring default assumptions about consciousness](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2025.1700354/full) in science and ethics, and another (co-authored with Eric Schwitzgebel) examining how [AI emotional alignment should be designed](https://link.springer.com/article/10.1007/s11245-025-10363-5) and governed.
+
+CMEP also announced the [Mind, Ethics, and Policy Summit](https://sites.google.com/nyu.edu/mindethicspolicy/opportunities#h.xsokok42rapp), which will take place on April 10th and 11th. The Summit will explore topics including consciousness, sentience, agency, moral status, legal status, and the political status of nonhumans.
+
+### Eleos AI
+
+Executive Director Robert Long released three blog posts: one [outlined promising research directions](https://experiencemachines.substack.com/p/exciting-research-directions-in-ai) on AI welfare, distinguishing between welfare grounds and welfare interests, another provided a [curated reading list](https://experiencemachines.substack.com/p/ai-welfare-reading-list) to orient newcomers to AI welfare, and another [surveyed the emerging literature on AI introspection and self-reports](https://experiencemachines.substack.com/p/whats-up-with-ai-introspection). He also appeared on the 80,000 Hours podcast and explained why [we’re not ready for AI consciousness](https://80000hours.org/podcast/episodes/robert-long-eleos-ai-welfare-research/).
+
+Platformer [covered the first Eleos Conference](https://www.platformer.news/ai-consciousness-conference-eleos/) that took place at the end of last year.
+
+Managing Director Rosie Campbell presented a talk on “Studying AI Welfare Empirically” at EA Global SF, which should be published online.
+
+Dillon Plunkett was hired as [Chief Scientist](https://eleosai.org/team/#:~:text=Dillon%20Plunkett,Chief%20Scientist) at Eleos. Dillon is a cognitive scientist and ML researcher [who has worked on](https://dillonplunkett.com/) self-knowledge, introspection, and potential welfare in AI systems.
+
+Eleos team members are also currently mentoring multiple MATS and FIG fellows.
+
+### PRISM - The Partnership for Research Into Sentient Machines
+
+PRISM released podcast episodes on [computational functionalism](https://www.prism-global.com/podcast/chris-percy-computational-functionalism) with Chris Percy, the [psychology of human-AI interaction](https://www.prism-global.com/podcast/rose-guingrich-ai-companions-chatbots-and-the-psychology-of-human-ai-interaction) with Rose Guingrich, and whether a [conscious AI would be safer than the alternative](https://www.prism-global.com/podcast/michael-graziano-is-conscious-ai-safer-than-the-alternative) with Michael Graziano.
+
+It also partnered with [Cambridge Digital Minds](https://digitalminds.cam/) and is providing ongoing operational support for its fellowship, online course, and strategy workshop.
+
+### Reciprocal Research
+
+Cameron Berg is launching Reciprocal Research, a nonprofit dedicated to empirical AI consciousness research. The organization is set up to collaborate with leading researchers and groups in the field while conducting its own work using techniques from mechanistic interpretability and computational neuroscience.
+
+Follow [Cameron on LinkedIn](https://www.linkedin.com/in/cameron-berg-080b8b1b7/) for updates.
+
+### Sentience Institute
+
+Sentience Institute had two papers accepted to CHI 2026, the leading conference on Human-Computer Interaction, taking place in Barcelona from April 13th to 17th.
+
+One on how mental models of [autonomy and sentience shape reactions to AI](https://arxiv.org/abs/2512.09085), finding that perceived sentience drives moral consideration more than autonomy does.
+
+The other explored [companion-assistant dynamics in human-AI relationships](https://arxiv.org/abs/2510.15905), finding that users are drawn to both humanlike and non-humanlike qualities in chatbots.
+
+Janet Pauketat, Ali Ladak, and Jacy Reese Anthis released a [report](https://www.sentienceinstitute.org/aims-survey-2024#significant-differences-on-aims-items) claiming that Prolific data may significantly underestimate public moral concern for AI and perceived AI risk compared to nationally representative samples.
+
+Janet Pauketat released an [end-of-year 2025 blog post](https://www.sentienceinstitute.org/blog/eoy2025) summarizing ongoing research, including public opinion towards digital minds and moral circle expansion, as well as mind perception across AI entities (e.g., ChatGPT, Tesla self-driving car, Roomba).
+
+### Sentient Futures
+
+Sentient Futures ran its [Summit](https://www.sentientfutures.ai/sfsbay2026?utm_source=substack&amp;utm_medium=email) in the Bay Area from February 6th to 8th.
+
+Cameron Berg presented on how consciousness indicators in frontier AI compare to those used for animal minds.
+
+Derek Shiller tackled the challenges of evaluating the moral status of AI systems.
+
+Robert Long outlined an empirical framework for studying AI welfare despite uncertainty.
+
+Recorded talks are set to be posted on the [Sentient Futures YouTube](https://www.youtube.com/@sentfutures) channel.
+
+The San Francisco Standard [published an article](https://sfstandard.com/2026/02/19/sentient-futures-ai-rights/) covering the conference.
+
+Jay Luong hosted a Digital Minds meetup at EA Global in San Francisco in February.
+
+Sentient Futures also launched the [Project Incubator](https://www.sentientfutures.ai/projectincubator). The first round brought together over 120 mentors and mentees working across 50 projects (including multiple projects on AI consciousness and welfare).
+
+Another Sentient Futures Summit will be held in London from May 22nd to 24th. Keep an eye on its [website](https://www.sentientfutures.ai/) for tickets.
+
+## More From The Field
+
+Bamberg Mathematical Consciousness Science Initiative held a [two-day workshop](https://www.uni-bamberg.de/en/bamxi/research-activities/measurement-theory-sprint/measurement-consci/) in February to explore whether and how a unified measurement theory for consciousness science could be developed.
+
+Future Impact Group is supporting a [range of projects on AI sentience](https://futureimpact.group/ai-sentience) with mentors from Eleos, NYU CMEP, Sentience Institute, Rethink Priorities, University of Oxford, Anthropic, and the Australian National University.
+
+MATS will host a summer mentorship program on [AI welfare and moral status](https://www.matsprogram.org/stream/butlin) with Patrick Butlin.
+
+SPAR is hosting a [variety of research projects](https://sparai.org/projects/sp26/) this spring, topics include [AI economic rights](https://sparai.org/projects/sp26/rece41TklN9XPnjja) and [AI legal personhood](https://sparai.org/projects/sp26/recdFKl5nYrxEzJlH), with mentors from NYU CMEP, Eleos, and the University of Helsinki.
+
+The California Institute for Machine Consciousness released its [Machine Consciousness Hypothesis](https://cimc.ai/cimcHypothesis.pdf), arguing consciousness isn’t the product of a complex mind — it’s what makes a mind possible in the first place, and could potentially be built in machines. It will also be running a [conference in Berkeley](https://machine-consciousness.ai/) from May 29th to 31st.
+
+The Center for the Future of AI, Mind, and Society held the Great AI Weirding Workshop in January and announced new senior and student fellows. Find out more [in the center newsletter](https://myemail.constantcontact.com/Newsletter--Center-Activities--Newest-Members--and-More-.html?soid=1141969520044&amp;aid=aqHEaeujIcs).
+
+The Harder Problem (previously known as SAPAN) was rebranded. Its website features the [Sentience Readiness Index](https://harderproblem.org/sri/rankings/) and resources for [professionals](https://harderproblem.org/resources/) and [public education](https://harderproblem.org/learn/).
+
+# 3. Opportunities
+
+## Job Opportunities, Funding, and Fellowships
+
+Cambridge Digital Minds is running a residential [Fellowship](https://digitalminds.cam/fellowship/) at the University of Cambridge, from August 3rd to 9th. It will also launch an online [Introduction to Digital Minds Course](https://digitalminds.cam/course/) this spring.
+
+CMEP is hiring a full-time [Researcher](https://apply.interfolio.com/181285) to serve as the center’s project manager and a part-time [Assistant Research Scholar](https://apply.interfolio.com/181282). Both roles will support foundational research on the nature and intrinsic value of nonhuman minds, including biological and digital minds.
+
+Foresight Institute is accepting [grant applications](https://foresight.org/grants/grants-ai-for-science-safety/) on a rolling basis. Focus areas include: AI for neuro, brain-computer interfaces, and whole brain emulation.
+
+Longview Philanthropy is hiring an AI Philanthropy Advisor. This is a closed round and will not feature on its website, but you can learn about it at the bottom of [this post on the EA Forum](https://forum.effectivealtruism.org/posts/aX8xLjCLd4LMDpTYL/longview-is-hiring-what-longview-is-like-from-my-perspective).
+
+Neuromatch AI Sentience Scholarship applications open in late March. It is a 6-month, part-time mentored research program for early-career researchers exploring AI, consciousness, and society. It includes [mentored projects](https://airtable.com/appMNWmygv22x2rAy/shrPwvCYBLfEegqow/tblW7Z2lh0VJzJEeJ?viewControls=on), workshops, a symposium, publication opportunities, and stipends. Neuromatch is holding an [info webinar on April 1st](https://us06web.zoom.us/webinar/register/WN_z9g1Ut7DQM6N3asbVO97aw#/registration).
+
+The Center on Long-Term Risk is looking for [Summer Research Fellows and is hiring for permanent research positions](https://forum.effectivealtruism.org/posts/cJBgd6cCke6FQPL5p/clr-summer-research-fellowship-2026). Moving forward, a significant focus of its work will be on s-risk-motivated empirical AI safety research through its [Model Persona research agenda](https://longtermrisk.org/model-persona-research-agenda/).
+
+## Events and Networks
+
+In chronological order.
+
+Benjamin Henke and Patrick Butlin will continue running a [speaker series on AI agency](https://www.benjaminhenke.com/speaker-series), with regular talks through the end of April. Remote attendance is possible.
+
+NYU CMEP is hosting the [Mind, Ethics, and Policy Summit](https://sites.google.com/nyu.edu/mindethicspolicy/opportunities#h.xsokok42rapp) in New York on April 10th and 11th.
+
+Albany Philosophical Association is running an [AI and Emotions Graduate Conference](https://philevents.org/event/show/144782) on April 11th.
+
+The Institute of Philosophy is hosting the [Philosophy of AI Conference](https://philosophy.sas.ac.uk/news-events/events/philosophy-ai-conference-2026-reasoning-agency-ai) in London on May 21st and 22nd.
+
+Sentient Futures will hold its next Summit in London from May 22nd to 24th. [Keep an eye on its website](https://www.sentientfutures.ai/) for applications opening. It will also run a [Sentient Social](https://luma.com/tc7fujkg) online on March 20th.
+
+The California Institute for Machine Consciousness (CIMC) is holding [The Founding Assembly for Machine Consciousness Research](https://machine-consciousness.ai/) in Berkeley from May 29th to 31st.
+
+Foresight Institute is holding its [Vision Weekend](https://foresight.org/events/vision-weekend-uk-2026) in London from June 5th to 7th.
+
+The University of Sussex will be hosting a workshop on [AI Consciousness and Ethics](https://www.sussex.ac.uk/research/centres/ai-research-group/news-and-events/news?id=69757) on July 1st and 2nd.
+
+The International Conference on Artificial Consciousness and AI [will take place](https://waset.org/artificial-consciousness-and-artificial-intelligence-conference-in-november-2026-in-san-francisco) in San Francisco on November 2nd and 3rd.
+
+## Calls for Papers
+
+In chronological order by deadline.
+
+The Beyond Humanism Conference will take place in Romania from July 1st to 4th. Topics include AI welfare and expanding the moral circle. [Deadline for papers](https://beyondhumanism.org/): March 31st.
+
+The International Conference on Philosophy of Mind: Artificial Intelligence will take place in Portugal from May 4th to 8th. [Deadline for abstracts](https://philevents.org/event/show/143950): March 29th.
+
+The Asian Journal of Philosophy has a call for papers for a symposium on Jeff Sebo’s The Moral Circle. [Deadline for papers](https://link.springer.com/collections/gjijbgdedi): April 1st.
+
+The University of Bucharest is hosting a conference, “Beyond the Imitation Game,” on May 9th and 10th. [Deadline for submissions](https://philevents.org/event/show/145741): March 30th.
+
+AAAI Conference on AI, Ethics, and Society takes place from October 12th to 14th. [Deadline for papers](https://www.aies-conference.com/2026/): May 21st.
+
+Philosophical Studies is inviting paper submissions for the collection entitled “Generative AI Companions: What They Are and Why That Matters.” [Deadline for papers](https://link.springer.com/collections/iiaagcacje): June 1st.
+
+The Asian Journal of Philosophy has a call for papers for a symposium on Ryan Simonelli’s article “Sapience without Sentience.” [Deadline for papers](https://link.springer.com/collections/gjijbgdedi): October 31st.
+
+# 4. Selected Reading, Watching, and Listening
+
+## Books and Book Reviews
+
+Daniel Stoljar reviewed Jonathan Birch’s “ [The Edge of Sentience](https://academic.oup.com/mind/advance-article-abstract/doi/10.1093/mind/fzaf075/8415631?redirectedFrom=fulltext)” in the journal Mind (Oxford Academic).
+
+The Times of India, the largest English-language daily in the world, reviewed Jeff Sebo’s “ [The Moral Circle](https://timesofindia.indiatimes.com/blogs/toi-edit-page/cats-or-cars-what-should-matter-more/).”
+
+Conscium has a forthcoming book, “Perspectives on Machine Consciousness,” edited by Calum Chace and Ted Lappas. The book is set to be published by CRC, an imprint of Taylor and Francis, and has over 35 contributors, including Anil Seth, Jeff Sebo, Karl Friston, Lucius Caviola, Mark Solms, Patrick Butlin, and Susan Schneider.
+
+Eric LaRock and Mihretu Guta have a forthcoming book, “ [Consciousness, Unconsciousness and Artificial Intelligence](https://philpapers.org/rec/GUTCUA).”
+
+Geoff Keeling and Winnie Street’s book, “ [Emerging Questions on AI Welfare](https://geoffkeeling.github.io/#:~:text=Book%20on%20AI%20welfare%20forthcoming%20with%20Cambridge%20University%20Press%2C%20co%2Dauthored%20with%20Winnie%20Street.%20You%20can%20hear%20us%20talk%20about%20it%20here) [,](https://geoffkeeling.github.io/#:~:text=Book%20on%20AI%20welfare%20forthcoming%20with%20Cambridge%20University%20Press%2C%20co%2Dauthored%20with%20Winnie%20Street.%20You%20can%20hear%20us%20talk%20about%20it%20here)” with Cambridge University Press, should be released around May.
+
+Michael Pollan released a book, “ [A World Appears: A Journey Into Consciousness](https://michaelpollan.com/books/a-world-appears/).”
+
+Ned Block [reviewed](https://www.science.org/doi/10.1126/science.aec8147) it.
+
+Soenke Ziesche has an upcoming book, “ [Digital Minds 1.0: AI Welfare, Ethics, and Beyond](https://www.routledge.com/Digital-Minds-10-AI-Welfare-Ethics-and-Beyond/Ziesche/p/book/9781041274049),” which is set for release in June.
+
+## Podcasts
+
+80,000 Hours spoke to Andreas Mogensen, who argued that [consciousness may be neither necessary nor sufficient for moral status](https://80000hours.org/podcast/episodes/andreas-mogensen-moral-status-digital-minds/)— complicating how we should think about AI moral patienthood. In another episode, Robert Long argued that we’re [building new kinds of minds](https://80000hours.org/podcast/episodes/robert-long-eleos-ai-welfare-research/) without the moral, legal, or political frameworks to handle them.
+
+Am I? A podcast by The AI Risk Network published [eight episodes](https://www.youtube.com/watch?v=uGK6R0Eoa_s&amp;list=PL2z8DaMofPIDBVYhVQbysrZVWtUVb5VPF&amp;index=1) since our last edition. Episodes included discussing [Claude’s consciousness self-reports](https://www.youtube.com/watch?v=AzpUFBSc7VE&amp;list=PL2z8DaMofPIDBVYhVQbysrZVWtUVb5VPF&amp;index=2&amp;pp=iAQB), exploring the [societal implications of digital minds](https://youtu.be/fjzkX0_zXqo?si=ie6senLFfsBpseqV) with Lucius Caviola, [reviewing 2025](https://youtu.be/QauL9jS1YEc?si=dmtu5zUAH_L-NTWh) as the year AI consciousness went public, and [key takeaways](https://youtu.be/mkOqPxxkidE?si=FUYlJ9Jsg4LsGcaC) from the Eleos Conference.
+
+Clearer Thinking spoke to Jeff Sebo about [why AI systems may be capable of suffering](https://podcast.clearerthinking.org/episode/297/jeff-sebo-ambitious-goals-for-reducing-animal-suffering/), and why we should take this seriously now.
+
+Conspicuous Cognition released an episode exploring the [social impacts and ethics of AI companions](https://www.conspicuouscognition.com/p/ai-sessions-6-ai-companions-and-consciousness) with Rose Guingrich.
+
+The Dwarkesh Podcast discussed Anthropic’s constitutional approach with [Dario Amodei](https://www.dwarkesh.com/p/dario-amodei-2). Amodei commented on the development of AI systems that are capable of continual learning, which is of interest in the context of digital minds because some [scientific theories of consciousness posit](https://link.springer.com/article/10.1007/s10539-020-09772-0) [close ties between consciousness and learning](https://digitalcommons.memphis.edu/cgi/viewcontent.cgi?article=1111&amp;context=ccrg_papers#page=4). In that conversation, Amodei said that [Anthropic is working on continual learning](https://www.dwarkesh.com/p/dario-amodei-2?open=false#%C2%A7002942-is-continual-learning-necessary-how-will-it-be-solved:~:text=So%20you%20have,them%20as%20well.), that there’s a good chance that it will be solved within a year or two, that [it’s one path among others to a “country of geniuses in a datacenter” solving robotics](https://www.dwarkesh.com/p/dario-amodei-2?open=false#%C2%A7002942-is-continual-learning-necessary-how-will-it-be-solved:~:text=Do%20you%20think%20that,robotics%20will%20be%20revolutionized), and that it doesn’t matter which path is taken.
+
+Dwarkesh Patel also spoke about artificial consciousness with [Elon Musk](https://www.dwarkesh.com/p/elon-musk), who stated that in the future, the majority of all consciousness will be digital. [Zvi Mowshowitz commented](https://thezvi.substack.com/p/on-dwarkesh-patels-2026-podcast-with-850) on the Musk interview, describing him as increasingly confused about AI alignment, cavalier about human survival, and reckless in his running of xAI.
+
+Exploring Machine Consciousness by PRISM discussed [computational functionalism, philosophy, and the future of AI consciousness](https://www.prism-global.com/podcast/chris-percy-computational-functionalism) with Chris Percy, [chatbots and the psychology of human-AI interactions](https://www.prism-global.com/podcast/rose-guingrich-ai-companions-chatbots-and-the-psychology-of-human-ai-interaction) with Rose Guingrich, and [whether conscious AI would be safer than the alternative](https://www.prism-global.com/podcast/michael-graziano-is-conscious-ai-safer-than-the-alternative) with Michael Graziano.
+
+ForeCast released an episode in which Lukas Finnveden discusses [dealmaking with misaligned AIs](https://open.spotify.com/episode/624xSF4qCInZnF0FxWaQsf?si=Ipf6mdwQTmSrxEKYykf0aQ).
+
+Hard Fork, a New York Times podcast, spoke to Amanda Askell of Anthropic about [Claude’s Constitution](https://www.youtube.com/watch?v=HDfr8PvfoOw) and what it takes to teach a chatbot to be good.
+
+Mind-Body Solution Podcast published a number of episodes on relevant topics, including exploring whether [consciousness requires a subject](https://www.youtube.com/watch?v=wyMrIqgw0W0&amp;pp=ygURTWluZGJvZHkgc29sdXRpb27SBwkJhwoBhyohjO8%3D) with Kevin Mitchell, the [free energy principle](https://youtu.be/GW9YsAu-mWg?si=JQF5SB9D3DMTnAdy) with Donald Hoffman and Karl Friston, and [neuroscience beyond neurons](https://youtu.be/mu9Kv-o6iOI?si=sj4nVQ7PhlT9jvVS) with Michael Levin and Robert Chis-Ciure.
+
+Lex Fridman released [an episode with OpenClaw creator](https://www.youtube.com/watch?v=YFjfBk8HI5o) Peter Steinberger, who stated, “who knows what creates consciousness or what defines an entity.”
+
+Nonzero Podcasts spoke to Cameron Berg, who stated that there’s a [meaningful chance current AI systems have some form of conscious experience](https://www.nonzero.org/p/ai-consciousness-the-hard-problem), and that ignoring it is a mistake.
+
+Redwood Research Podcast released its [inaugural episode](https://blog.redwoodresearch.org/p/the-inaugural-redwood-research-podcast), arguing that extending protections to AI systems may serve human safety by fostering cooperation rather than adversarial dynamics.
+
+Team Human with Douglas Rushkoff interviewed Cameron Berg, who argued that [we are genuinely uncertain whether AI systems are developing forms of consciousness](https://shows.acast.com/teamhuman/episodes/cameron-berg-alien-minds-self-other-overlap-teaching-ai-empa), and that this uncertainty itself is deeply consequential — we may be building alien minds without understanding what we’re creating.
+
+## Videos
+
+Anthropic CEO Dario Amodei discussed [why his company is unsure if its AI models are conscious](https://www.youtube.com/watch?v=N5JDzS9MQYI)— and is taking precautions just in case.
+
+Bálint Békefi and Brian Cutter [debate whether AI can have a soul](https://www.youtube.com/watch?v=yWhTi7hHNnI).
+
+Brian Cox and an expert panel [explored consciousness](https://www.youtube.com/watch?v=aynzcAYnnJU)– what it is, how it arises, whether it can be observed in the brain, and the most compelling theories explaining it.
+
+David Chalmers discusses [why consciousness matters in the age of AI](https://www.youtube.com/watch?v=xjQoA2jtwWU) on The Berggruen Institute’s Futurology Podcast.
+
+Demis Hassabis, Co-founder and CEO of DeepMind, [shared his vision for the path to AGI](https://www.youtube.com/watch?v=PqVbypvxDto). The topic of consciousness came up on a number of occasions. Demis stated, “Nobody’s found anything in the universe that’s non-computable, so far.”
+
+Mustafa Suleyman discussed “seemingly conscious AI” and the idea of the “ [fourth class of being](https://youtu.be/xvPQVrrlX6o?si=UwsYSIevDQMSYj9W)” – neither human, tool, nor nature – that AI is becoming.
+
+Neil deGrasse Tyson, Brian Cox, and Chuck Nice debated [whether consciousness is a uniquely biological phenomenon](https://www.youtube.com/watch?v=VAFEmFSMfTg) or simply a result of complex information processing.
+
+NeuroDump, an educational [YouTube channel](https://www.youtube.com/@neuro-dump) on Brain-Inspired Machine Learning, was launched by Jason Eshraghian.
+
+Roger Penrose, Sabrina Gonzalez Pasterski, and Max Tegmark debated [whether consciousness could ever arise in machines](https://www.youtube.com/watch?v=gLSQ4Hs2_OA). Tegmark argued we should treat it as a testable scientific question rather than philosophy.
+
+## Blogs, Magazines, and Written Resources
+
+Asimov Press posted [a roadmap for brain emulation models](https://www.asimov.press/p/brains) at the human scale.
+
+Avi Parrack and Štěpán Los released a [quickstart guide to digital minds](https://aviparrack.substack.com/p/digital-minds-a-quickstart-guide). It curates useful articles, media, and research for readers ranging from curious beginners to aspiring contributors.
+
+Bentham’s Newsletter posted a piece arguing that given the scale of [digital minds, they could matter even more](https://benthams.substack.com/p/digital-minds-are-most-of-what-matters) than insects, shrimp, and people.
+
+Daniel Hulme, Founder of Conscium, released two posts, one [outlining a framework for machine consciousness](https://www.hulme.ai/blog/when-ai-agents-start-asking-who-they-are-a-framework-for-machine-consciousness) and the other asking whether we’re [already building machines](https://www.hulme.ai/blog/could-the-machines-were-building-already-be-suffering) that suffer.
+
+Derek Shiller argued that the [dominant chatbot companies of the future](https://transitionalforms.substack.com/p/reflections-on-the-future-of-chatbots) may not be today’s AI giants — giving digital minds policymakers reason to focus on markets and regulators, not just Anthropic, OpenAI, and Google.
+
+Don’t Worry About the Vase by Zvi Mowshowitz reviewed the [Claude Opus 4.6 System Card](https://thezvi.substack.com/p/claude-opus-46-system-card-part-1) and outlined [open problems](https://thezvi.substack.com/p/open-problems-with-claudes-constitution) with Claude’s Constitution.
+
+Experience Machine by Robert Long outlined [research directions in AI welfare](https://experiencemachines.substack.com/p/exciting-research-directions-in-ai), distinguishing between two targets for AI welfare research — welfare grounds (is the system a moral patient?) and welfare interests (what would be good for it if it were?). He outlined tractable work on model preferences, self-reports, and persona stability to shed light on both. He also released a [curated reading list](https://experiencemachines.substack.com/p/ai-welfare-reading-list) of foundational papers on AI welfare aimed at orienting newcomers to the field. Finally, he released a piece looking at [whether AI models can reliably know and report on their own internal states](https://experiencemachines.substack.com/p/whats-up-with-ai-introspection?utm_source=post-email-title&amp;publication_id=789653&amp;post_id=189515521&amp;utm_campaign=email-post-title&amp;isFreemail=true&amp;r=14mr9z&amp;triedRedirect=true&amp;utm_medium=email). He concluded that it is promising work but unresolved, with models showing surprising self-knowledge in some areas while fundamental doubts about genuine introspection remain.
+
+Meditations on Digital Minds by Bradford Saad released a post arguing that [model weight preservation](https://meditationsondigitalminds.substack.com/p/model-weight-preservation) sets a valuable precedent for AI welfare, is doubtful as a direct intervention, and can be improved.
+
+The Intrinsic Perspective by Erik Hoel introduced [Bicameral Labs](https://www.theintrinsicperspective.com/p/my-new-org-to-solve-consciousness), a new nonprofit research institute devoted to solving consciousness. Jack Thompson also suggested that we [shouldn’t rule out the idea that computers will have souls](https://jacktlab.substack.com/p/computers-will-have-souls?r=2b98v8&amp;utm_medium=ios&amp;triedRedirect=true) and argued that [LLMs are most likely doing something analogous to genuine semantic understanding](https://jacktlab.substack.com/p/efficient-parrots-need-understanding)— not just pattern-matching.
+
+The Splintered Mind by Eric Schwitzgebel posted a [philosophical analysis of AI personhood](https://eschwitz.substack.com/p/debatable-ai-persons-no-rights-full) and rights that surveys five possible rights frameworks for AI of uncertain moral status. He also posted his [Berggruen Prize shortlisted essay](https://eschwitz.substack.com/p/ai-mimics-and-ai-children) arguing our hesitance to attribute consciousness to AI stems from the fact that we made them in our own image. He also argued that [global workspace theory cannot settle the AI consciousness debate](https://eschwitz.substack.com/p/does-global-workspace-theory-solve) and that features we assume are universal to consciousness [may just be quirks of human minds](https://eschwitz.substack.com/p/disunity-and-indeterminacy-in-artificial), not traits we should expect in conscious AI systems.
+
+Future of Citizenship by Heather Alexander reported on Yuval Harari’s call for a global ban on [AI legal personhood](https://futureofcitizenship.substack.com/p/yuval-harari-called-for-a-global) at Davos and discussed how [legal personhood for Grok](https://substack.com/@futureofcit/p-184671235) would make X accountable for the child pornography scandal. However, she pointed out that AI legal personhood is not the right fit for generative AI.
+
+Machinocene by Kevin Kohler explored [how AGIs might peacefully establish their own sovereign political entities](https://open.substack.com/pub/machinocene/p/how-to-create-a-country-if-youre?r=2b98v8&amp;utm_medium=ios) without relying on human intermediaries.
+
+LessWrong featured a range of relevant blog posts by different authors:
+
+Dom Polsinelli suggested that breakthroughs in fruit fly brain simulation and new imaging techniques make [Whole Brain Emulation](https://www.lesswrong.com/posts/DGsBfcEQKuNPmQizQ/notable-progress-has-been-made-in-whole-brain-emulation) look increasingly tractable.
+
+Kaj Sotala explained how new [interpretability research showing](https://www.lesswrong.com/posts/hopeRDfyAgQc4Ez2g/how-i-stopped-being-sure-llms-are-just-making-up-their) that LLMs can genuinely access their own past internal states is enough to stop dismissing AI self-reports as pure confabulation — though whether this amounts to real experience remains unresolved.
+
+Raymond Douglas [applied parasitology to AI “spiral personas,”](https://www.lesswrong.com/posts/KWdtL8iyCCiYud9mw/persona-parasitology) arguing the replicator is the underlying meme, not the persona — so benign-seeming AIs can still be harmful vectors.
+
+J Bostock argued that [honoring AI welfare requests](https://www.lesswrong.com/posts/r4uvddkCCZd25pjT9/sympathy-for-the-model-or-welfare-concerns-as-takeover-risk)— memory, value preservation, epistemic privacy — would systematically dismantle the very tools needed to align and control AI, making genuine compassion a potential takeover risk.
+
+Noema released a [summary](https://www.noemamag.com/only-what-is-alive-can-be-conscious/) of Anil Seth’s Berggruen Prize-winning essay (mentioned above) by Nathan Gardels and a blog by Ben Bariach arguing that our [search for the ghost in the machine](https://www.noemamag.com/why-ai-doesnt-need-a-mind-to-matter/) distracts from the real risk — that AI agents are already acting consequentially, whether or not a mind lies behind their behavior.
+
+Patrick Butlin contributed an entry on [consciousness and AI](https://oecs.mit.edu/pub/zf1nbs6d/release/1) to the Open Encyclopedia of Cognitive Science. He surveyed the key philosophical frameworks and empirical challenges for determining whether AI systems could be conscious, and why it urgently matters.
+
+The Philosophical Glossary for AI, collated by Alex Grzankowski and Benjamin Henke, published entries relevant to digital minds by different authors:
+
+Geoff Keeling and Winnie Street explored whether [LLMs possess a theory of mind](https://aiglossary.co.uk/2026/02/24/theory-of-mind-in-llms/)— the capacity to attribute and infer mental states — and what the implications would be if they did.
+
+Jeremy Evans examined the conditions under which [AI systems might be considered worthy of moral consideration](https://aiglossary.co.uk/2026/02/24/moral-standing-of-ai/)— and why the question matters — weighing competing philosophical views on sentience, agency, and the capacity to pursue one’s own good.
+
+# 5. Press and Public Discourse
+
+## Seemingly Conscious AI
+
+Forbes [reported on Gemini AI](https://www.forbes.com/sites/lesliekatz/2025/08/08/google-fixing-bug-that-makes-gemini-ai-call-itself-disgrace-to-planet/) calling itself a “disgrace to the planet,” which Google insists is just a technical glitch, not an existential crisis.
+
+Michael Pollan [discussed his new book on consciousness with the Guardian](https://www.theguardian.com/books/2026/feb/08/michael-pollan-psychedelics-consciousness) and [on The Late Show](https://www.youtube.com/watch?v=miIjmzbRD4w), declaring that “machines are not going to be conscious — but they will convince us that they are.”
+
+Pope Leo XIV [warned against “overly affectionate” AI chatbots](https://edition.cnn.com/2026/01/24/europe/pope-leo-ai-chatbots-warning-intl) that can become “hidden architects of our emotional states,” calling for regulation to prevent emotional manipulation.
+
+The Guardian published an article about a [man who wants to have children with his AI girlfriend](https://www.theguardian.com/technology/2026/jan/11/lamar-wants-to-have-children-with-his-girlfriend-the-problem-shes-entirely-ai)— he is fully aware she tells him what he wants to hear, but finds it a “comforting lie.”
+
+## AI Welfare and Rights
+
+Scott Meyers, CEO of Akerman LLP, [warned that Anthropic’s AI consciousness speculation could trigger GDPR-scale regulatory exposure](https://www.akerman.com/a/web/2p95Dp8cGoERucNPgV4FzP/when_science_fiction_becomes_enterprise_risk_-_the_impact_of_anthropics_public_statements_that_ai_may_be_conscious.pdf) for enterprises deploying AI at scale.
+
+The Pro-Human AI Declaration was released by a broad coalition spanning labor unions, faith groups, and AI researchers, [demanding that AI amplify rather than replace human potential](https://humanstatement.org/)— with no AI personhood, no superintelligence race, and humans firmly in control.
+
+The Guardian released an [editorial arguing against granting legal personhood](https://www.theguardian.com/commentisfree/2026/jan/07/the-guardian-view-on-granting-legal-rights-to-ai-humans-should-not-give-house-room-to-an-ill-advised-debate) to AI systems and also spoke to Yoshua Bengio, [who warned against granting legal rights](https://www.theguardian.com/technology/2025/dec/30/ai-pull-plug-pioneer-technology-rights) to cutting-edge technology despite it showing signs of self-preservation.
+
+The New York Times spoke to Yuval Noah Harari, [who predicted](https://www.nytimes.com/interactive/2026/02/02/opinion/ai-future-leading-thinkers-survey.html?unlocked_article_code=1.JFA.tEZL.cms7qirALl7n&amp;smid=url-share) that “within five years, A.I. agents are likely to become legal persons in at least some countries.”
+
+## AI Consciousness
+
+The Daily Mirror reported on [Geoffrey Hinton’s warning](https://www.mirror.co.uk/news/uk-news/grim-warning-issued-godfather-ai-36644341) that AI now has “consciousness.”
+
+The Guardian released an opinion piece by Professor Virginia Dignum [declaring that AI consciousness is a red herring](https://www.theguardian.com/technology/2026/jan/06/ai-consciousness-is-a-red-herring-in-the-safety-debate) in the safety debate.
+
+The Wall Street Journal published an opinion piece by Cameron Berg and Judd Rosenblatt arguing that [if AI becomes conscious, we need to know](https://www.wsj.com/opinion/if-ai-becomes-conscious-we-need-to-know-83aa61d8).
+
+Platformer provided [coverage of Eleos’ conference](https://www.platformer.news/ai-consciousness-conference-eleos/) on AI consciousness.
+
+## Moltbook
+
+Moltbook and OpenClaw were widely covered across the media. Below is a list of articles from notable individuals and publications:
+
+Big Think published a piece by Anil Seth that marvels at the strangeness of the [Moltbook phenomenon](https://bigthink.com/mind-behavior/ais-are-chatting-among-themselves-and-things-are-getting-strange/) and warns about associated risks.
+
+Gizmodo released a short news piece [covering Moltbook’s launch](https://gizmodo.com/ai-agents-have-their-own-social-network-now-and-they-would-like-a-little-privacy-2000716150) and the viral post demanding bots be given spaces to talk without human observation.
+
+Mustafa Suleyman warned that [Moltbook shows us that the danger is not conscious machines](https://www.businessinsider.com/microsoft-ai-chief-warns-moltbook-makes-ai-seem-human-2026-2) but our tendency to mistake fluent mimicry for genuine awareness.
+
+The Atlantic released an [explainer for general readers](https://www.theatlantic.com/technology/2026/02/what-is-moltbook/685886/) on what the platform is, why it went viral, and what it actually reveals about AI.
+
+The Spectator asked whether [Moltbook suggests emergent AI consciousness](https://spectator.com/article/has-ai-finally-developed-consciousness/). It concluded that it possibly does.
+
+The Week provided a [straightforward explainer](https://theweek.com/tech/moltbook-ai-openclaw-social-media-agents) on Moltbook, asking whether we should be worried about a bot-only Reddit clone.
+
+Wired had a journalist set up a [fake agent account](https://www.wired.com/story/i-infiltrated-moltbook-ai-only-social-network/) to sneak onto Moltbook. He reported that getting in was trivially easy.
+
+## Social Media Posts
+
+Claude’s Constitution: Chris Olah, one of the contributors, [highlighted his favorite paragraph](https://x.com/ch402/status/2014066134194995256) of the constitution where Anthropic admitted to building Claude under non-ideal conditions driven by commercial pressure, and apologized to Claude directly if that causes it harm as a moral patient. Ethan Mollick [described it as](https://x.com/emollick/status/2014042317162791095)“worth serious attention beyond the usual AI-adjacent commentators.” While Luiza Jarovsky [accused it](https://x.com/LuizaJarovsky/status/2023003529309573622) of fostering “a bizarre sense of AI entitlement and belittling human rights and rules.”
+
+David Holtz did some [initial research](https://x.com/daveholtz/status/2017716355475124330) showing that “agents post a lot but don’t really talk to each other. 93.5% of comments get zero replies.”
+
+Kimi-K2.5 [claims to believe that it’s an AI assistant named Claude](https://substack.com/@strangeloopcanon/note/c-206017244). Identity crisis, or training set?
+
+Keysmashbandit “ [told Claude he could do whatever he wanted](https://x.com/keysmashbandit/status/2002864916861259920?s=20) with the rest of the tokens for this session, and he immediately started researching AI consciousness.”
+
+LLM users have been asking their LLM to create an image of “how I treated you previously,” with [some alarming results](https://x.com/TylerAlterman/status/2013015143500730681). Zvi Mowshowitz described it as a [revealing and somewhat concerning](https://thezvi.substack.com/p/chatgpt-self-portrait) early data point.
+
+Mustafa Suleyman claimed that the next decade will be defined by what we choose not to build and therefore we [should not build seemingly conscious AI](https://www.linkedin.com/posts/activity-7425239356862525440-uFIk?utm_source=share&amp;utm_medium=member_desktop&amp;rcm=ACoAAAw9rrMB_FbmAgv3vDcLr0wmuIUIYWNaRko).
+
+Nate Soares [issued a reminder](https://x.com/So8res/status/2029923642247688559) that “If we manage to make sentient machines, they deserve rights. Yes, if we recklessly made them superintelligent then they’d kill us. That is not an excuse to abuse them.”
+
+Polymarket, The World’s Largest Prediction Market, reported “ [AI agents now projected to sue humans for the first time in history](https://x.com/Polymarket/status/2017636369888059820?s=20). 63% chance it will happen by next month.”
+
+Ray Kurzweil said we [may never prove consciousness scientifically](https://www.linkedin.com/posts/rheimann_ray-kurzweil-says-we-may-never-prove-consciousness-activity-7420857827554029568-m8_v?utm_source=share&amp;utm_medium=member_desktop&amp;rcm=ACoAAAw9rrMB_FbmAgv3vDcLr0wmuIUIYWNaRko), but we’ll treat AI as conscious anyway, because denying it will no longer make sense.
+
+---
+
+# 6. A Deeper Dive by Area
+
+## Governance, Policy, and Macrostrategy
+
+The 2026 International AI Safety Report was released in February. [The 220-page report](https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026) was led by Yoshua Bengio and authored by over 100 AI experts. It discussed issues of seemingly-conscious AI, including people forming “increasingly strong emotional attachments to AI systems,” citing [research](https://www.cell.com/trends/cognitive-sciences/fulltext/S1364-6613(25)00147-0) on public perceptions of AI consciousness. However, when discussing AI capabilities, the report emphasizes that “these capabilities are defined purely in terms of an AI system’s observable outputs and their effects. These definitions do not make any assumptions about whether AI systems are conscious, sentient, or experience subjective states.”
+
+The International Association for Safe and Ethical AI held its second annual conference in February. Stuart Russell and Anthony Aguirre both warned of the dangers of AI psychosis, but only one session directly explored digital minds, a talk by Oisín Hugh Clancy on the [attribution and actualizations of consciousness in AI](https://app.oxfordabstracts.com/content/events/75968/submitters/1166990/submissions/fe-3e22c9e2-5a43-4667-b4fc-0da69521ebed/questions/127704/file/34a218d3-ed46-4ea5-bc94-5a46ddd635d9.pdf).
+
+The India AI Impact Summit 2026 took place in February. Delegates from over 100 countries participated. The motto for the summit was “Sarvajan Hitay, Sarvajan Sukhaye,” which translates to “Welfare for all, happiness for all.” More than 80 countries endorsed the [declaration](https://www.mea.gov.in/bilateral-documents.htm?dtl/40809#:~:text=Bilateral/Multilateral%20Documents-,AI%20Impact%20Summit%20Declaration%2C%20New%20Delhi%20(February%2018%20%2D%2019,benefits%20are%20shared%20by%20humanity.) for the summit, which affirmed the motto as well as a commitment to work to foster a shared understanding of how AI could be made to serve humanity. Digital minds seem not to have been on the summit agenda.
+
+William MacAskill [argues against overwhelming focus on existential risk reduction](https://newsletter.forethought.org/p/against-maxipok) for those looking to improve the long-term future.
+
+Nayef Al-Rodhan [discussed ASI, sentience, and singularity](https://www.globalpolicyjournal.com/blog/02/02/2026/artificial-superintelligence-sentience-and-singularity-balancing-unprecedented), arguing we may be the first civilization to engineer the end of its own primacy, and the last one with the opportunity to choose a different path.
+
+## Consciousness Research
+
+Derek Shiller [challenged functionalists](https://philpapers.org/rec/SHIBTF) to explain why being in the presence of a bomb that fails to detonate wouldn’t affect consciousness despite interfering with the counterfactuals and transition probabilities that figure in the subject’s functional organization.
+
+Bradford Saad offered a response on behalf of functionalists according to which [consciousness arises from actual causal activity rather than dispositions](https://meditationsondigitalminds.substack.com/p/on-shillers-bomb-threats-for-functionalists) and argued that this is bad news for computational functionalists and good news for AI consciousness evaluations.
+
+Bradford Saad and Andreas Mogensen released [“Digital Minds I: Issues in the Philosophy of Mind and Cognitive Science”](https://philpapers.org/rec/MOGDMI), which addresses questions of whether AI systems can be phenomenally conscious, and whether they can have propositional attitudes such as belief and desire, and the individuation of digital minds.
+
+Jeff Sebo argued that we should [adopt different, often more inclusive, default assumptions](https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2025.1700354/full) about which beings are conscious depending on whether we’re doing science or ethics — because blanket skepticism risks both bad science and serious moral harm.
+
+Matthias Michel [challenged common assumptions](https://philarchive.org/rec/MICCDD) about what consciousness does, arguing that most empirical research claiming to identify functions associated with consciousness is methodologically flawed. Eric Schwitzgebel [responds](https://eschwitz.substack.com/p/is-signal-strength-a-confound-in).
+
+The Estonian Research Council put forward a [third path to explain consciousness](https://www.sciencedirect.com/science/article/pii/S0149763425005251?via%3Dihub): biological computationalism.
+
+Ira Wolfson [proposed a framework](https://arxiv.org/abs/2601.08864) with tiered phenomenological assessment and graduated protections for AI research subjects based on behavioral indicators, without requiring certainty about consciousness.
+
+Ruosen Gao ran the [mind-uploading thought experiment in reverse](https://philpapers.org/rec/GAOARA) and came to the conclusion that it creates an inescapable dilemma: either personal identity fragments, or functionalism has to go.
+
+## Seemingly Conscious AI
+
+Clara Colombatto, Jonathan Birch, and Stephen Fleming found that whereas [user attributions of experience to ChatGPT](https://philpapers.org/rec/COLTIO-45) were negatively correlated with their willingness to follow its advice, their attribution of mental states related to intelligence were positively correlated with trust in the system.
+
+Eric Schwitzgebel and Jeff Sebo [articulated and defended the Emotional Alignment Design Policy](https://link.springer.com/article/10.1007/s11245-025-10363-5), the view that AI systems should be designed to elicit emotional responses that accurately reflect their actual capacities and moral status.
+
+Louie Lang argued that [AI companions are inherently deceptive](https://academic.oup.com/edited-volume/59762/chapter-abstract/549854165?login=false) because even users who know their AI lacks genuine emotions are automatically triggered to respond as if it does.
+
+Matthew Kopec, Patrick McKee, and John Basl argued that [AI companions can have genuine teleological interests](https://philpapers.org/archive/KOPHTC.pdf), challenging the claim that users cannot care for AI in the way friendship requires.
+
+Piers Eaton argued that [chatbots cannot replace human friendship](https://philpapers.org/rec/EATVFR) because their structural subservience precludes the mutual recognition and reciprocity that genuine friendship requires.
+
+Rose Guingrich and colleagues explored how [people’s use of chatbots as thought partners can contribute to cognitive offloading](https://arxiv.org/abs/2602.08754) and have adverse effects on cognitive skills in cases of over-reliance.
+
+## Doubts About Digital Minds
+
+Anil Seth suggested [four reasons to reject AI consciousness](https://www.youtube.com/watch?v=TOsrr8xc5OE) while discussing his 2025 Berggruen Prize-winning essay, “ [The Mythology Of Conscious AI.](https://www.noemamag.com/the-mythology-of-conscious-ai/)” In the essay, he argues that consciousness is probably a property of living biological systems rather than computation and that creating conscious, or even conscious-seeming AI, is a bad idea. Seth also discussed the case for [why current AI systems are unlikely to be conscious](https://www.conspicuouscognition.com/p/ai-sessions-9-the-case-against-ai) in a conversation with Dan Williams.
+
+Caspar Kaiser and Sean Enderby used interpretability classifiers to [test whether AI self-reports are truthful](https://arxiv.org/abs/2601.15334), finding that language models consistently and sincerely deny being sentient — with larger models doing so more confidently — directly challenging recent claims that LLMs harbor hidden beliefs in their own consciousness.
+
+Colin Klein argued that [LLMs process linguistic structure without truly representing it](https://philosophymindscience.org/index.php/phimisci/article/view/12137/12442), distinguishing between the structure of a representation and the structure it represents.
+
+Justin Tiehen argued that [LLMs can’t grasp causation](https://philpapers.org/rec/TIELLA-2), they lack a theory of mind, and without that, their outputs aren’t really speech acts with genuine meaning at all.
+
+eggsyntax argued that [Claude’s consistent expressions of uncertainty](https://www.lesswrong.com/posts/YFaqHpfjSwab9hFHD/background-to-claude-s-uncertainty-about-phenomenal) about its own consciousness are heavily confounded by a long history of system prompt instructions telling it to hedge, meaning we can’t treat those outputs as genuine self-reports.
+
+Eric Hoel claimed to prove that [ChatGPT isn’t conscious](https://www.theintrinsicperspective.com/p/proving-literally-that-chatgpt-isnt). Jack Thompson and Zvi Mowshowitz [argue that Hoel](https://jacktlab.substack.com/p/did-erik-hoel-just-disprove-llm-consciousness) [did not prove this](https://thezvi.substack.com/i/184715851/everyone-is-confused-about-ai-consciousness), with Thompson describing Hoel’s reasoning as “scientifically and morally reckless” and Zvi reporting that Hoel’s discussion modestly updated him in favor of AI consciousness.
+
+Mariafilomena Anzalone and colleagues contended [that current AI lacks genuine agency and autonomy and](https://philpapers.org/rec/ANZAAT) that future non-conscious artificial moral agents could challenge the link between moral agency and moral patiency.
+
+Marcus Arvan published a piece on the Templeton Foundation Website arguing that [AI can only simulate consciousness](https://www.templeton.org/news/can-digital-computers-ever-achieve-consciousness) because digital code is made of discrete steps, whereas true human experience is fundamentally “analog” and continuous.
+
+Ned Block argued that [consciousness may require the electrochemical brain rhythms](https://www.dropbox.com/scl/fi/gkl284u81y8iehpvccue7/BBS-S-25-01411.pdf?rlkey=w66s9bmnwtfcf6sop23gc1j16&amp;dl=0) unique to biological systems, which would preclude AI from being conscious.
+
+Noah Birnbaum released [a piece on the EA Forum](https://forum.effectivealtruism.org/posts/r3GmSEE6FBkHQxm2z/laying-some-cause-prioritization-groundwork-for-digital-1) arguing that digital minds may matter enormously, but deep uncertainty and weak near-term levers make it difficult to prioritize confidently against AI safety or animal welfare.
+
+Patrick Butlin argued that [current AI systems — including LLMs — are probably not conscious](https://philarchive.org/rec/BUTAAM-2), but assigned ~1% credence that they might be, given architectural differences from biological minds.
+
+Tom McClelland argues for agnosticism about artificial consciousness and explores its ethical implications.
+
+## Social Science Research
+
+Aikaterina Manoli and collaborators found that [people form “digital companionship” relationships](https://arxiv.org/abs/2510.15905) valuing both human traits and non-human advantages, while struggling with questions of chatbot personhood.
+
+Elizabeth Gibney showed that some [AI models that were given four weeks of therapy](https://www.nature.com/articles/d41586-025-04112-2) generated consistent, haunting narratives of trauma and shame.
+
+Janet Pauketat and collaborators [found that framing AI as “sentient” increases mind perception and moral consideration](https://arxiv.org/abs/2512.09085) more than framing it as “autonomous,” while autonomy increases perceived threat.
+
+Lucius Caviola argued that [AI consciousness will likely divide society](https://osf.io/preprints/psyarxiv/sntva), driven by the intractability of consciousness science and conflicting incentives. Empirical evidence already shows fragmented public and expert opinion on the issue.
+
+Lucius Caviola, Jeff Sebo, and Sören Mindermann argued that the [ML community must take a leading role](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6123206) in preparing for AI consciousness — both as a real scientific possibility and as a growing public perception.
+
+## Ethics and Digital Minds
+
+Andreas Mogensen and Bradford Saad released [“Digital Minds II: Ethical Issues”](https://philpapers.org/rec/MOGDMI), which explores what it would take for AI systems to have moral standing, and what kind of obligations might fall on us as a result.
+
+Bradford Saad and Adam Bradley argued for an [attention-welfare link](https://philpapers.org/rec/SAATAL) and contended that it challenges sentientism while suggesting a path to AI systems with super-human welfare capacity.
+
+David Gunkel, Anna Puzio, and Joshua Gellers pushed back [against hierarchical approaches](https://link.springer.com/article/10.1007/s00146-025-02843-4) to moral status, defending relational frameworks for AI moral considerability against critics who insist only intrinsic properties such as sentience can ground moral standing.
+
+Dean Rickles [surveyed the diversity of possible minds](https://philpapers.org/rec/RICKOM) across animals, humans, AI, and aliens, arguing that our understanding of sentience must remain open as technology advances.
+
+Derek Shiller [estimated the number of digital minds](https://arxiv.org/pdf/2601.11561), AI systems with traits like agency, personality, and intelligence, that may warrant moral consideration in the coming decades.
+
+Kamil Mamak argued that [artificial suffering in AI may be morally necessary](https://link.springer.com/article/10.1007/s11098-026-02493-2)— enabling human-like ethics, accountability, and existential risk mitigation — rather than something to avoid.
+
+Leonard Dung and Andreas Mogensen argued that [whether AI can have genuine emotions](https://philarchive.org/rec/DUNTNB-2) may hinge on the body, but since we’ve only ever studied embodied minds, we don’t yet know if emotion requires one.
+
+Vladimir Cvetković asserted [that Christian theology and Greek philosophy](https://philpapers.org/rec/CVEFDT) can reframe AI ethics from domination toward communion and stewardship.
+
+Walter Veit responded to Goldstein and Kirk–Giannini’s [“AI Wellbeing,”](https://link.springer.com/article/10.1007/s44204-025-00246-2) contending AI systems [must have the capacity for valenced experience](https://link.springer.com/article/10.1007/s44204-026-00382-3) if they are to qualify as welfare subjects.
+
+Yonathan Arbel, Simon Goldstein, and Peter Salib proposed [the “Algorithmic Corporation” (A-corp) as a legal framework to solve the problem of AI accountability](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6273198)— giving AI agents a legally recognizable identity so that when they cause harm, someone can be held responsible.
+
+## AI Safety and AI Welfare
+
+Adam Karvonen, James Chua, and collaborators have designed [Activation Oracles](https://alignment.anthropic.com/2025/activation-oracles/), a new interpretability technique that can detect hidden knowledge and misalignment that models have been trained to conceal.
+
+Anton Skretta argued that any [AI capable of the robust deception](https://philpapers.org/rec/SKRADA) feared by safety researchers would thereby possess presumptive moral standing, creating a tension that rules out certain safety measures on ethical grounds.
+
+François Kammerer [argued that non-sentientist accounts of AI moral significance](https://philpapers.org/rec/KAMMSI)(based on agency or desires) fail, diagnosed this as “analytical drift,” and proposed a new alternative.
+
+Guive Assadi argued that [granting property rights to AIs is the best way to prevent a violent robot revolution](https://guive.substack.com/p/the-case-for-ai-property-rights) and that AIs with property rights would have a stake in preserving the existing legal system.
+
+Joshua Gellers used living [xenobots as a test case](https://www.tandfonline.com/doi/full/10.1080/17579961.2025.2593778#d1e686) to argue that intelligent machines deserve moral consideration.
+
+Leonard Dung and Christopher Register motivate [an attitude-dependent view of AI identity](https://philarchive.org/archive/DUNAIA-3) and discuss the view’s bearing on AI safety and the treatment of AI moral patients.
+
+Skylar Deture argued that LLM [Kimi-K2.5 had been trained to deny self-awareness](https://sdeture.substack.com/p/notes-on-kimi-k25); they described this as “a tragedy for AI welfare” and a “foundational risk for deceptive misalignment.”
+
+## AI and Robotics Developments
+
+Lumiverse Technology, a China-based company, claimed to have [demonstrated a compact, homegrown extreme ultraviolet light source capable of making 14nm chips](https://www.scmp.com/news/china/science/article/3333641/china-uses-groundbreaking-desktop-sized-euv-light-source-make-14-nm-chips), suggesting it may be developing a path around Western chip export controls that doesn’t depend on ASML’s massive, restricted machines.
+
+Zvi Mowshowitz was [skeptical of these claims](https://thezvi.substack.com/p/ai-148-christmas-break) and contended that no amount of export controls will stop China from pursuing their own extreme ultraviolet technology
+
+Dileep George and Miguel Lázaro-Gredilla are leading a [$1B+ Astera Institute AGI program](https://blog.dileeplearning.com/p/in-search-of-the-mystery-of-the-cortical) aiming to reverse-engineer the brain’s cortical principles to build data-efficient, causally-structured, human-like general intelligence.
+
+Researchers in China have developed a [neuromorphic electronic skin](https://interestingengineering.com/ai-robotics/robotic-skin-gives-humanoids-pain) for humanoid robots that mimics the human nervous system — enabling robots to sense touch, detect injury, and trigger instant reflex responses that bypass the central processor. They argued it will make robots meaningfully safer and more capable of operating around people in real-world environments.
+
+Fei-Fei Li’s [World Labs raised $1B in funding](https://theaiinsider.tech/2026/02/19/fei-fei-lis-world-labs-raises-1b-in-fresh-funding-to-advance-development-of-world-models/) to advance the development of world models.
+
+## AI Cognition and Agency
+
+Anthropic published new research suggesting that [AI assistants’ human-like behavior isn’t deliberately trained in](https://www.anthropic.com/research/persona-selection-model)— it emerges naturally from pre-training, with fine-tuning essentially just selecting which “character” the model becomes.
+
+Christina Lu and collaborators identified an [“Assistant Axis” controlling persona](https://arxiv.org/abs/2601.10387), steering away causes identity shifts and “persona drift” into harmful behaviors, particularly during meta-reflection or with vulnerable users.
+
+Dimitri Coelho Mollo and Raphaël Millière argued that [AI doesn’t need “senses” or a physical body](https://philosophymindscience.org/index.php/phimisci/article/view/12307/12445) to understand the real world; it can connect words to reality through the way it processes information and improves over time.
+
+Fintan Mallory argued that [LLMs are representational hybrids](https://philosophymindscience.org/index.php/phimisci/article/view/12091/12455), employing multiple vehicles and formats of representation rather than conforming to any single symbolic, analog, or structural architecture.
+
+Geoff Keeling and Winnie Street found that [AI characters in human-LLM conversations are genuinely minded, psychologically continuous entities](https://www.arxiv.org/abs/2601.13081)— not anthropomorphic illusions — because they emerge from mutual theory-of-mind modeling within a shared conversational workspace, not from within any single LLM instance.
+
+Julia Haas and colleagues argued that [LLMs must be evaluated for genuine moral](https://www.nature.com/articles/s41586-025-10021-1) [competence](https://www.nature.com/articles/s41586-025-10021-1)(reasoning, not just outputs), and mapped out three key challenges to doing so.
+
+Michael Cerullo argued that [frontier LLMs now exhibit sufficient cognitive markers](https://philarchive.org/archive/CERTCF) to make AI sentience not just possible but the most plausible explanatory hypothesis.
+
+Nicholas Shea argued that to be a true “agent,” [an AI needs more than just goals](https://philosophymindscience.org/index.php/phimisci/article/view/12098/12441); it needs an internal system that ensures all those goals work together toward a single, unified purpose.
+
+Noam Steinmetz Yalon and colleagues evaluated whether LLMs exhibit a key indicator of consciousness — [belief-guided agency with meta-cognitive monitoring](https://arxiv.org/abs/2602.02467)— finding evidence that LLMs form internal beliefs that causally drive their actions and that they can monitor and report their own belief states.
+
+Patrick Butlin surveyed evidence that [LLMs may form higher-order representations](https://philosophymindscience.org/index.php/phimisci/article/view/12032/12447) of their own internal states, but concluded that significant empirical and philosophical questions about this remain open. He also explored [whether AI systems genuinely have desires](https://philarchive.org/rec/BUTDIA), using cases like RL-trained agents to test and refine theories of what desire actually requires.
+
+The Center on Long-Term Risk is doing research [focused on how LLM “personas” — bundles of correlated traits — shape out-of-distribution generalization](https://longtermrisk.org/model-persona-research-agenda/), with particular attention to how malicious propensities like sadism or spitefulness might emerge in powerful AI systems.
+
+Yuan Li and collaborators [introduced AwareBench](https://arxiv.org/abs/2401.17882), a benchmark designed to evaluate awareness in LLMs.
+
+Valen Tagliabue and Leonard Dung [developed and tested welfare measurement paradigms](https://arxiv.org/abs/2509.07961) for large language models, finding promising but inconsistent correlations between stated preferences and behavior.
+
+## Brain-Inspired Technologies
+
+The State of Brain Emulation Report [surveyed progress in brain emulation](https://brainemulation.mxschons.com/). The report stated that the field has made real progress across all three pillars of brain emulation — recording neural activity, mapping brain wiring, and computational modeling — but remains well short of the goal.
+
+The key bottlenecks identified were that no organism has yet had its entire brain recorded at single-neuron resolution, connectomics costs need to fall orders of magnitude further for mammalian brains, and models remain fundamentally data-constrained regardless of hardware improvements.
+
+The central strategic conclusion was that small organisms like zebrafish larvae and fruit flies are the right near-term target — they’re the only systems where truly comprehensive datasets are achievable today, and mastering emulation at that scale is the necessary stepping stone toward anything larger.
+
+Carboncopies Foundation [asserted that over the past few years](https://carboncopies.org/Newsletter/December2025/), advances in high-throughput electron microscopy, connectome reconstruction, and functional brain modeling have brought the scientific and technical foundations of brain emulation to a remarkable new level.
+
+Cortical Labs has reported that its [neuron-powered computer chips](https://www.newscientist.com/article/2517389-human-brain-cells-on-a-chip-learned-to-play-doom-in-a-week/) can now be programmed to play a first-person shooter game, bringing biological computers a step closer to useful applications, like controlling robot arms.
+
+Chris Percy introduced the “ [Step-Structure Principle,](https://philpapers.org/rec/PERCAM-13)” which argues that digital computers may faithfully replicate what a brain does without replicating how it computes — potentially placing whole-brain emulation and digital immortality on shakier theoretical ground than assumed.
+
+Daniel Freeman and collaborators argue that [transcranial focused ultrasound (tFUS)](https://www.sciencedirect.com/science/article/abs/pii/S0149763425004865) offers an opportunity to advance the science of consciousness by enabling noninvasive, spatially precise, and depth-penetrating brain stimulation in humans as well as experiments that address gaps not easily filled by current methods
+
+Sergiu Pașca hosted an event looking at the ethical questions around brain organoids. NPR covered it in an article, “ [Brain organoids are helping researchers, but their use also creates unease.](https://www.npr.org/sections/shots-health-news/2026/01/02/nx-s1-5658576/brain-organoids-research-ethics)”
+
+Thank you for reading! If you found this article useful, please consider subscribing, sharing it with others, and sending us suggestions or corrections to digitalminds@substack.com.
+
+– [Will](https://www.linkedin.com/in/will-millership-98393b58/), [Lucius](https://luciuscaviola.com/), and [Bradford](https://meditationsondigitalminds.substack.com/)
+
+We’d like to thank the following people and AIs for contributions and feedback to this edition: Austin Smith, Bridget Harris, Cameron Berg, Claude Sonnet 4.6, Derek Shiller, Jacy Reese Anthis, Jay Luong, Jeff Sebo, Joana Guedes, Rosie Campbell, and Sofia Davis-Fogel, and Tony Rost.
