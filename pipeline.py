@@ -1,10 +1,11 @@
-import json
+import json, http.client, re, xml.etree.ElementTree as ET
 from dotenv import load_dotenv
 load_dotenv()
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from scraper import fetch_one
 from llm import ask as llm_ask
+import html2text
 
 
 NO_CONTENT = "NO_USABLE_CONTENT"
@@ -31,13 +32,13 @@ MIN_TEXT_FOR_SUMMARY = 200
 
 PROMPT_TEMPLATE = """You are writing a draft of the next edition of the Digital Minds Newsletter, a curated newsletter covering digital minds, AI consciousness, and moral status.
 
-<previous_newsletter>
-{reference_text}
-</previous_newsletter>
-
 <articles>
 {articles}
 </articles>
+
+<previous_newsletter>
+{reference_text}
+</previous_newsletter>
 
 <instructions>
 Write the next edition following the structure and style of the previous newsletter. This is a draft that will be reviewed and edited by the newsletter authors.
@@ -93,10 +94,28 @@ class NewsletterPipeline:
 
   @staticmethod
   def fetch_reference(url):
+    """Fetch newsletter content via Substack RSS feed, falling back to scraping."""
+    try:
+      domain = url.split("//")[1].split("/")[0]
+      slug = url.rstrip("/").split("/")[-1]
+      conn = http.client.HTTPSConnection(domain)
+      conn.request("GET", "/feed")
+      res = conn.getresponse()
+      root = ET.fromstring(res.read().decode("utf-8"))
+      ns = {"content": "http://purl.org/rss/1.0/modules/content/"}
+      for item in root.findall(".//item"):
+        link = item.find("link").text or ""
+        if slug in link:
+          html_content = item.find("content:encoded", ns)
+          if html_content is not None and html_content.text:
+            h = html2text.HTML2Text()
+            h.body_width = 0
+            h.ignore_images = True
+            return h.handle(html_content.text).strip()
+    except Exception:
+      pass
     result = fetch_one(url)
-    if result["ok"]:
-      return result["text"]
-    return ""
+    return result["text"] if result["ok"] else ""
 
   def fetch(self, urls, max_links=None):
     """Yields (done, total) as articles are fetched. Access .fetch_results after."""
@@ -167,8 +186,10 @@ if __name__ == "__main__":
   urls = load_links()
   max_links = 30
 
-  with open("newsletter-2-text.txt") as f:
-    reference_text = f.read().strip()
+  ref_url = "https://www.digitalminds.news/p/the-vatican-ai-legal-personhood-and"
+  print(f"Fetching reference newsletter from {ref_url}...")
+  reference_text = NewsletterPipeline.fetch_reference(ref_url)
+  print(f"  Got {len(reference_text):,} chars")
   pipeline = NewsletterPipeline(reference_text)
 
   print(f"Fetching {max_links or len(urls)} links...")
