@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from scraper import fetch_one, fetch_all
+from scraper import fetch_one
 from llm import ask as llm_ask
 
 
@@ -91,23 +91,52 @@ class NewsletterPipeline:
   def __init__(self, reference_text=""):
     self.reference_text = reference_text
 
-  def summarize_one(self, url, text):
+  @staticmethod
+  def fetch_reference(url):
+    result = fetch_one(url)
+    if result["ok"]:
+      return result["text"]
+    return ""
+
+  def fetch(self, urls, max_links=None):
+    """Yields (done, total) as articles are fetched. Access .fetch_results after."""
+    urls = urls[:max_links]
+    n = len(urls)
+    self.fetch_results = [None] * n
+    with ThreadPoolExecutor(max_workers=15) as pool:
+      futs = {pool.submit(fetch_one, u): i for i, u in enumerate(urls)}
+      done = 0
+      for f in as_completed(futs):
+        self.fetch_results[futs[f]] = f.result()
+        done += 1
+        yield done, n
+
+  def _summarize_one(self, url, text):
     if len(text) < MIN_TEXT_FOR_SUMMARY:
       return text
     return llm_ask(SUMMARIZE_PROMPT.format(text=text), model=SUMMARIZE_MODEL, timeout=30)
 
-  def summarize_all(self, results, max_links=None, workers=10):
-    results = results[:max_links]
-    out = [{**r, "summary": None} for r in results]
-    ok_results = [(i, r) for i, r in enumerate(results) if r["ok"]]
-    with ThreadPoolExecutor(max_workers=workers) as pool:
-      futures = {pool.submit(self.summarize_one, r["url"], r["text"]): i for i, r in ok_results}
-      for future in as_completed(futures):
-        idx = futures[future]
-        summary = future.result()
+  def summarize(self, results):
+    """Yields (done, total) as articles are summarized. Access .summarize_results after."""
+    self.summarize_results = [{**r, "summary": None} for r in results]
+    ok_items = [(i, r) for i, r in enumerate(results) if r["ok"]]
+    ok_n = len(ok_items)
+    if ok_n == 0:
+      return
+    with ThreadPoolExecutor(max_workers=10) as pool:
+      futs = {pool.submit(self._summarize_one, r["url"], r["text"]): i for i, r in ok_items}
+      done = 0
+      for f in as_completed(futs):
+        idx = futs[f]
+        summary = f.result()
         usable = NO_CONTENT not in (summary or "")
-        out[idx] = {**results[idx], "summary": summary if usable else None, "usable": usable}
-    return out
+        self.summarize_results[idx] = {
+          **results[idx],
+          "summary": summary if usable else None,
+          "usable": usable,
+        }
+        done += 1
+        yield done, ok_n
 
   def build_prompt(self, results):
     articles = ""
@@ -122,60 +151,46 @@ class NewsletterPipeline:
       articles += f"</article>\n"
     return PROMPT_TEMPLATE.format(reference_text=self.reference_text, articles=articles)
 
+  def stats(self, results):
+    usable = [r for r in results if r.get("ok") and r.get("usable", True)]
+    unusable = [r for r in results if r.get("ok") and not r.get("usable", True)]
+    failed = [r for r in results if not r.get("ok")]
+    return {"usable": usable, "unusable": unusable, "failed": failed}
+
 
 def load_links(path="newsletter-1-links.txt"):
   with open(path) as f:
     return [l.strip() for l in f if l.strip()]
 
 
-def print_unusable(results):
-  bad = [r for r in results if r.get("ok") and not r.get("usable", True)]
-  failed = [r for r in results if not r.get("ok")]
-  if bad or failed:
-    print(f"\n--- Excluded from prompt: {len(bad)} unusable, {len(failed)} failed ---")
-    for r in bad:
-      print(f"  [unusable]  {r['url']}")
-    for r in failed:
-      print(f"  [failed]    {r['url']}")
-    print()
-
-
-def print_table(results):
-  ok_count = sum(1 for r in results if r["ok"])
-  fail_count = len(results) - ok_count
-  print(f"\n{'#':>4}  {'Len':>7}  {'OK':>3}  URL")
-  print("-" * 90)
-  for i, r in enumerate(results, 1):
-    ok_str = "Y" if r["ok"] else "N"
-    err = f"  ({r['error'][:40]})" if r["error"] else ""
-    print(f"{i:>4}  {r['length']:>7}  {ok_str:>3}  {r['url'][:60]}{err}")
-  print("-" * 90)
-  print(f"Total: {len(results)}  |  OK: {ok_count}  |  Failed: {fail_count}\n")
-
-
-def save_results(results, path="results.json"):
-  with open(path, "w") as f:
-    json.dump(results, f, indent=2)
-  print(f"Saved to {path}")
-
-
 if __name__ == "__main__":
   urls = load_links()
   max_links = 30
-  print(f"Fetching {max_links or len(urls)} links...")
-  results = fetch_all(urls, max_links=max_links)
-  print_table(results)
-  save_results(results)
 
   with open("newsletter-2-text.txt") as f:
     reference_text = f.read().strip()
   pipeline = NewsletterPipeline(reference_text)
 
-  results = pipeline.summarize_all(results, max_links=max_links)
-  save_results(results, "results_summarized.json")
+  print(f"Fetching {max_links or len(urls)} links...")
+  for done, total in pipeline.fetch(urls, max_links):
+    print(f"  {done}/{total}", end="\r")
+  results = pipeline.fetch_results
+  print()
+
+  ok = sum(1 for r in results if r["ok"])
+  fail = len(results) - ok
+  print(f"Total: {len(results)}  |  OK: {ok}  |  Failed: {fail}")
+
+  print("Summarizing...")
+  for done, total in pipeline.summarize(results):
+    print(f"  {done}/{total}", end="\r")
+  results = pipeline.summarize_results
+  print()
 
   prompt = pipeline.build_prompt(results)
-  print_unusable(results)
   with open("prompt.txt", "w") as f:
     f.write(prompt)
   print(f"Prompt saved to prompt.txt ({len(prompt.split()):,} words)")
+
+  with open("results.json", "w") as f:
+    json.dump(results, f, indent=2)

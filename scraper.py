@@ -1,5 +1,4 @@
 import os, json, re, http.client
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from cache import cached
 
 MAX_TEXT_LENGTH = 200_000
@@ -83,12 +82,3 @@ def fetch_one(url):
     return {"url": url, "title": "", "ok": False, "length": 0, "text": "", "error": str(e)}
 
 
-def fetch_all(urls, max_links=None, workers=20):
-  urls = urls[:max_links]
-  results = [None] * len(urls)
-  with ThreadPoolExecutor(max_workers=workers) as pool:
-    futures = {pool.submit(fetch_one, url): i for i, url in enumerate(urls)}
-    for future in as_completed(futures):
-      idx = futures[future]
-      results[idx] = future.result()
-  return results

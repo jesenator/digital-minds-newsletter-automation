@@ -3,9 +3,7 @@ import streamlit as st
 from dotenv import load_dotenv
 load_dotenv()
 
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from scraper import fetch_one
-from pipeline import NewsletterPipeline, NO_CONTENT
+from pipeline import NewsletterPipeline
 
 DEFAULT_REFERENCE_URL = "https://www.digitalminds.news/p/the-vatican-ai-legal-personhood-and"
 
@@ -29,66 +27,42 @@ if st.button("Run Pipeline", type="primary", use_container_width=True):
   if not urls:
     st.error("No links provided.")
     st.stop()
-  urls = urls[:max_links]
-  n = len(urls)
 
   reference_text = ""
   if reference_url.strip():
     with st.spinner("Scraping reference newsletter..."):
-      ref = fetch_one(reference_url.strip())
-      if ref["ok"]:
-        reference_text = ref["text"]
-        st.success(f"Reference newsletter scraped ({ref['length']:,} chars)")
+      reference_text = NewsletterPipeline.fetch_reference(reference_url.strip())
+      if reference_text:
+        st.success(f"Reference newsletter scraped ({len(reference_text):,} chars)")
       else:
-        st.warning(f"Could not scrape reference newsletter: {ref['error']}")
+        st.warning("Could not scrape reference newsletter")
 
   pipeline = NewsletterPipeline(reference_text)
+  progress = st.progress(0)
 
-  progress = st.progress(0, text=f"Fetching 0/{n}...")
-  results = [None] * n
-  done = 0
-  with ThreadPoolExecutor(max_workers=15) as pool:
-    futs = {pool.submit(fetch_one, u): i for i, u in enumerate(urls)}
-    for f in as_completed(futs):
-      results[futs[f]] = f.result()
-      done += 1
-      progress.progress(done / n * 0.5, text=f"Fetching {done}/{n}...")
+  for done, total in pipeline.fetch(urls, max_links):
+    progress.progress(done / total * 0.5, text=f"Fetching {done}/{total}...")
+  results = pipeline.fetch_results
 
-  ok_items = [(i, r) for i, r in enumerate(results) if r["ok"]]
-  ok_n = len(ok_items)
-  st.info(f"Fetched {ok_n}/{n} articles successfully")
+  ok_n = sum(1 for r in results if r["ok"])
+  st.info(f"Fetched {ok_n}/{len(results)} articles successfully")
 
-  out = [{**r, "summary": None} for r in results]
-  done = 0
-  if ok_n > 0:
-    progress.progress(0.5, text=f"Summarizing 0/{ok_n}...")
-    with ThreadPoolExecutor(max_workers=10) as pool:
-      futs = {pool.submit(pipeline.summarize_one, r["url"], r["text"]): i for i, r in ok_items}
-      for f in as_completed(futs):
-        idx = futs[f]
-        summary = f.result()
-        usable = NO_CONTENT not in (summary or "")
-        out[idx] = {**results[idx], "summary": summary if usable else None, "usable": usable}
-        done += 1
-        progress.progress(0.5 + done / ok_n * 0.5, text=f"Summarizing {done}/{ok_n}...")
-
-  results = out
+  for done, total in pipeline.summarize(results):
+    progress.progress(0.5 + done / total * 0.5, text=f"Summarizing {done}/{total}...")
+  results = pipeline.summarize_results
   progress.progress(1.0, text="Done!")
 
-  bad = [r for r in results if r.get("ok") and not r.get("usable", True)]
-  failed = [r for r in results if not r.get("ok")]
-  usable = [r for r in results if r.get("ok") and r.get("usable", True)]
-
+  s = pipeline.stats(results)
   c1, c2, c3 = st.columns(3)
-  c1.metric("Usable", len(usable))
-  c2.metric("Unusable content", len(bad))
-  c3.metric("Failed to fetch", len(failed))
+  c1.metric("Usable", len(s["usable"]))
+  c2.metric("Unusable content", len(s["unusable"]))
+  c3.metric("Failed to fetch", len(s["failed"]))
 
-  if bad or failed:
+  if s["unusable"] or s["failed"]:
     with st.expander("Excluded links"):
-      for r in bad:
+      for r in s["unusable"]:
         st.text(f"[unusable]  {r['url']}")
-      for r in failed:
+      for r in s["failed"]:
         st.text(f"[failed]    {r['url']}")
 
   prompt = pipeline.build_prompt(results)
