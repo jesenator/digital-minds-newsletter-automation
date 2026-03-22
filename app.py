@@ -1,4 +1,5 @@
 # Run: streamlit run app.py
+import os
 import streamlit as st
 from dotenv import load_dotenv
 load_dotenv()
@@ -8,6 +9,25 @@ from pipeline import NewsletterPipeline
 DEFAULT_REFERENCE_URL = "https://www.digitalminds.news/p/the-vatican-ai-legal-personhood-and"
 
 st.set_page_config(page_title="Digital Minds Newsletter", layout="wide")
+
+def check_password():
+  if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+  if st.session_state.authenticated:
+    return True
+  st.title("Digital Minds Newsletter Builder")
+  password = st.text_input("Password", type="password")
+  if not password:
+    st.stop()
+  if password == os.environ.get("APP_PASSWORD", ""):
+    st.session_state.authenticated = True
+    st.rerun()
+  else:
+    st.error("Incorrect password.")
+    st.stop()
+
+check_password()
+
 st.title("Digital Minds Newsletter Builder")
 
 max_links = st.sidebar.slider("Max links", 10, 500, 100)
