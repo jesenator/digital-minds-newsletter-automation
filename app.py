@@ -1,8 +1,12 @@
 # Run: streamlit run app.py
-import os, random
+import os, sys, importlib, random
 import streamlit as st
 from dotenv import load_dotenv
 load_dotenv()
+
+for _m in ("cache", "scraper", "llm", "pipeline"):
+  if _m in sys.modules:
+    importlib.reload(sys.modules[_m])
 
 from pipeline import NewsletterPipeline, DEFAULT_INSTRUCTIONS
 
