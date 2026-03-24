@@ -115,14 +115,15 @@ if st.button("Run Pipeline", type="primary", use_container_width=True):
   s = pipeline.stats(results)
   prompt = pipeline.build_prompt(results, instructions=instructions)
 
-  with st.spinner(f"Generating newsletter draft with Claude Opus 4.6 (this may take a few minutes)..."):
-    draft = pipeline.generate(prompt)
+  st.subheader("Newsletter Draft (streaming...)")
+  draft = st.write_stream(pipeline.generate_stream(prompt))
 
   st.session_state.pipeline_snapshot = {
     "stats": s,
     "prompt": prompt,
     "draft": draft,
   }
+  st.rerun()
 
 snap = st.session_state.pipeline_snapshot
 if snap:

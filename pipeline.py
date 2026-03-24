@@ -4,7 +4,7 @@ load_dotenv()
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from scraper import fetch_one
-from llm import ask as llm_ask
+from llm import ask as llm_ask, ask_stream as llm_ask_stream
 import html2text
 
 
@@ -213,8 +213,11 @@ class NewsletterPipeline:
   GENERATE_MODEL = "anthropic/claude-opus-4.6"
 
   def generate(self, prompt):
-    """Send the assembled prompt to Claude Opus 4.6 and yield partial text as it streams."""
     return llm_ask(prompt, model=self.GENERATE_MODEL, timeout=600, max_tokens=128000, temperature=0.5)
+
+  def generate_stream(self, prompt):
+    """Yields text chunks as the model streams its response."""
+    yield from llm_ask_stream(prompt, model=self.GENERATE_MODEL, timeout=600, max_tokens=128000, temperature=0.5)
 
   def stats(self, results):
     usable = [r for r in results if r.get("ok") and r.get("usable", True)]
