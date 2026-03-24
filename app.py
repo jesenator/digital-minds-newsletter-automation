@@ -116,7 +116,7 @@ if st.button("Run Pipeline", type="primary", use_container_width=True):
   c3.metric("Failed to fetch", len(s["failed"]))
 
   if s["unusable"] or s["failed"]:
-    with st.expander("Excluded links"):
+    with st.expander("Excluded links (be sure to add these manually if you want them included in the newsletter)"):
       for r in s["unusable"]:
         st.text(f"[unusable]  {r['url']}")
       for r in s["failed"]:
@@ -124,7 +124,7 @@ if st.button("Run Pipeline", type="primary", use_container_width=True):
 
   prompt = pipeline.build_prompt(results, instructions=instructions)
 
-  with st.expander("View assembled prompt"):
+  with st.expander("View assembled prompt (You can also paste this into your own claude.ai for easier followup edits)"):
     st.download_button("Download prompt", prompt, file_name="prompt.txt")
     st.code(prompt, language=None, wrap_lines=True)
 
@@ -145,3 +145,8 @@ if st.button("Run Pipeline", type="primary", use_container_width=True):
       st.code(draft, language="markdown", wrap_lines=True)
   else:
     st.error("Generation failed -- no output returned.")
+
+st.divider()
+st.caption(
+  "If you encounter issues, contact [jessewgilbert@gmail.com](mailto:jessewgilbert@gmail.com)."
+)
