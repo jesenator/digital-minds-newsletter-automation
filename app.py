@@ -33,6 +33,9 @@ def check_password():
 
 check_password()
 
+if "pipeline_snapshot" not in st.session_state:
+  st.session_state.pipeline_snapshot = None
+
 st.title("Digital Minds Newsletter Builder")
 
 max_links = 500
@@ -110,6 +113,23 @@ if st.button("Run Pipeline", type="primary", use_container_width=True):
   progress.progress(1.0, text="Done!")
 
   s = pipeline.stats(results)
+  prompt = pipeline.build_prompt(results, instructions=instructions)
+
+  with st.spinner(f"Generating newsletter draft with Claude Opus 4.6 (this may take a few minutes)..."):
+    draft = pipeline.generate(prompt)
+
+  st.session_state.pipeline_snapshot = {
+    "stats": s,
+    "prompt": prompt,
+    "draft": draft,
+  }
+
+snap = st.session_state.pipeline_snapshot
+if snap:
+  s = snap["stats"]
+  prompt = snap["prompt"]
+  draft = snap["draft"]
+
   c1, c2, c3 = st.columns(3)
   c1.metric("Usable", len(s["usable"]))
   c2.metric("Unusable content", len(s["unusable"]))
@@ -122,14 +142,9 @@ if st.button("Run Pipeline", type="primary", use_container_width=True):
       for r in s["failed"]:
         st.text(f"[failed]    {r['url']}")
 
-  prompt = pipeline.build_prompt(results, instructions=instructions)
-
-  with st.expander("View assembled prompt (You can also paste this into your own claude.ai for easier followup edits)"):
+  with st.expander("View assembled prompt (You can also paste this into your own chat for easier followup edits)"):
     st.download_button("Download prompt", prompt, file_name="prompt.txt")
     st.code(prompt, language=None, wrap_lines=True)
-
-  with st.spinner(f"Generating newsletter draft with Claude Opus 4.6 (this may take a few minutes)..."):
-    draft = pipeline.generate(prompt)
 
   if draft:
     header_col, dl_col = st.columns([4, 1])
