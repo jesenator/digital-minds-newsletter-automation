@@ -136,10 +136,8 @@ if st.button("Run Pipeline", type="primary", use_container_width=True):
 
     tabs = st.tabs(["Rendered", "Raw"])
     with tabs[0]:
-      with st.container(height=600):
-        st.markdown(draft)
+      st.markdown(draft)
     with tabs[1]:
-      with st.container(height=600):
-        st.code(draft, language="markdown", wrap_lines=True)
+      st.code(draft, language="markdown", wrap_lines=True)
   else:
     st.error("Generation failed -- no output returned.")
