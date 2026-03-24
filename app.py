@@ -115,8 +115,9 @@ if st.button("Run Pipeline", type="primary", use_container_width=True):
   s = pipeline.stats(results)
   prompt = pipeline.build_prompt(results, instructions=instructions)
 
-  st.subheader("Newsletter Draft (streaming...)")
-  draft = st.write_stream(pipeline.generate_stream(prompt))
+  with st.spinner("Generating newsletter draft with Claude Opus 4.6..."):
+    with st.container(border=True):
+      draft = st.write_stream(pipeline.generate_stream(prompt))
 
   st.session_state.pipeline_snapshot = {
     "stats": s,
@@ -156,7 +157,8 @@ if snap:
 
     tabs = st.tabs(["Rendered", "Raw"])
     with tabs[0]:
-      st.markdown(draft)
+      with st.container(border=True):
+        st.markdown(draft)
     with tabs[1]:
       st.code(draft, language="markdown", wrap_lines=True)
   else:
