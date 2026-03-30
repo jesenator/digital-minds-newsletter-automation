@@ -60,14 +60,15 @@ APPROXIMATE STRUCTURE:
 
 DO NOT WRITE:
 - The welcome/intro paragraph, table of contents, subscribe callouts, header image, closing message, credits/acknowledgments, or things like this. These are added by the editors. Start your output directly with section 2.
+- Do not include meta-commentary about ordering in the draft output (e.g. "In chronological order." or "Listed alphabetically."). Just list the items in the correct order without announcing it.
 
 WRITING RULES:
 - The above structure is a guide. Especially for the sub sections, you can use your judgement to determine the best structure.
 - Output the article using markdown formatting with inline links: [anchor text](url)
 - Each entry in the deeper dive sections should be 1-2 sentences with a link.
 - Group related items together (e.g. multiple posts from the same author/blog).
-- An article may appear in both the Selected Reading section AND the Deeper Dive section if relevant.
-- Do NOT include links that were already covered in the previous newsletter (Newsletter #2). Only include new content.
+- Each article/link should appear in exactly ONE section. Place it in the single most appropriate section; do not duplicate it across multiple sections.
+- The previous newsletter is provided ONLY as a style and format reference. Do NOT repeat, paraphrase, or reference any specific content from it. If a link from <articles> also appeared in the previous newsletter, skip it entirely.
 - Do NOT fabricate or hallucinate any links, names, or claims. Only use information from the provided article summaries.
 - For content that is important but which you are not sure about, include an indicator, such as "[add more details]"
 - For podcasts and videos, mention the guest/speaker and what was discussed.
@@ -103,6 +104,7 @@ BOOKS SECTION:
 FORMAT:
 - Ensure format uniformity across sections and entries.
 - Use the correct markdown heading levels (# for title, ## for sections, ### for subsections) to ensure proper formatting when pasted into Substack.
+- Within each section or subsection, list entries in alphabetical order by the first word of the entry (typically the author's or organization's name). The exceptions are "Events and Networks" and "Calls for Papers", which should remain in chronological order as noted above.
 
 SELF-CHECK:
 - Before finalizing, review the draft for adherence to all the above rules."""
@@ -113,6 +115,7 @@ PROMPT_TEMPLATE = """You are writing a draft of the next edition of the Digital 
 {articles}
 </articles>
 
+The following is the PREVIOUS edition of the newsletter. It is provided ONLY so you can match its structure, tone, and formatting style. Do NOT copy, repeat, or paraphrase any of its content. Your draft must be entirely new.
 <previous_newsletter>
 {reference_text}
 </previous_newsletter>
