@@ -18,7 +18,10 @@ def _scrape_webpage(url):
   headers = {"X-API-KEY": os.environ["SERPER_API_KEY"], "Content-Type": "application/json"}
   conn.request("POST", "/", payload, headers)
   res = conn.getresponse()
-  return json.loads(res.read().decode("utf-8"))
+  data = json.loads(res.read().decode("utf-8"))
+  if data.get("statusCode") and data["statusCode"] != 200:
+    raise RuntimeError(f"Serper API error ({data['statusCode']}): {data.get('message', 'unknown')}")
+  return data
 
 
 def _is_youtube(url):
