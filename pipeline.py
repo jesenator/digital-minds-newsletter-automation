@@ -214,13 +214,14 @@ class NewsletterPipeline:
     )
 
   GENERATE_MODEL = "anthropic/claude-opus-4.6"
+THINKING_BUDGET = 32000
 
   def generate(self, prompt):
-    return llm_ask(prompt, model=self.GENERATE_MODEL, timeout=600, max_tokens=128000, temperature=0.5)
+    return llm_ask(prompt, model=self.GENERATE_MODEL, timeout=600, max_tokens=128000, temperature=0.5, thinking_budget=self.THINKING_BUDGET)
 
   def generate_stream(self, prompt):
     """Yields text chunks as the model streams its response."""
-    yield from llm_ask_stream(prompt, model=self.GENERATE_MODEL, timeout=600, max_tokens=128000, temperature=0.5)
+    yield from llm_ask_stream(prompt, model=self.GENERATE_MODEL, timeout=600, max_tokens=128000, temperature=0.5, thinking_budget=self.THINKING_BUDGET)
 
   def stats(self, results):
     usable = [r for r in results if r.get("ok") and r.get("usable", True)]
