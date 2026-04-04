@@ -76,10 +76,11 @@ with left_col:
     st.caption(f"Loaded {n_links} links from `{TEST_LINKS_FILE}`")
 
 with right_col:
+  generate_draft = st.checkbox("Generate draft with Claude Opus", value=True)
   instructions = st.text_area(
     "Instructions (structure, rules, style -- included in prompt)",
     value=DEFAULT_INSTRUCTIONS,
-    height=570,
+    height=540,
   )
 
 if st.button("Run Pipeline", type="primary", use_container_width=True):
@@ -115,9 +116,11 @@ if st.button("Run Pipeline", type="primary", use_container_width=True):
   s = pipeline.stats(results)
   prompt = pipeline.build_prompt(results, instructions=instructions)
 
-  with st.spinner("Generating newsletter draft with Claude Opus 4.6..."):
-    with st.container(border=True):
-      draft = st.write_stream(pipeline.generate_stream(prompt))
+  draft = None
+  if generate_draft:
+    with st.spinner("Generating newsletter draft with Claude Opus 4.6..."):
+      with st.container(border=True):
+        draft = st.write_stream(pipeline.generate_stream(prompt))
 
   st.session_state.pipeline_snapshot = {
     "stats": s,
@@ -144,8 +147,9 @@ if snap:
       for r in s["failed"]:
         st.text(f"[failed]    {r['url']}")
 
-  with st.expander("View assembled prompt (You can also paste this into your own chat for easier followup edits)"):
-    st.download_button("Download prompt", prompt, file_name="prompt.txt")
+  st.subheader("Assembled Prompt")
+  st.download_button("Download prompt", prompt, file_name="prompt.txt")
+  with st.expander("View prompt (You can also paste this into your own chat for easier followup edits)"):
     st.code(prompt, language=None, wrap_lines=True)
 
   if draft:
@@ -161,6 +165,8 @@ if snap:
         st.markdown(draft)
     with tabs[1]:
       st.code(draft, language="markdown", wrap_lines=True)
+  elif draft is None:
+    pass
   else:
     st.error("Generation failed -- no output returned.")
 

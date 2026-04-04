@@ -107,7 +107,7 @@ BOOKS SECTION:
 
 FORMAT:
 - Ensure format uniformity across sections and entries.
-- Use the correct markdown heading levels (# for title, ## for sections, ### for subsections) to ensure proper formatting when pasted into Substack.
+- Use the correct markdown heading levels (# for top level sections like Highlights and Field Developments, ## for sub sections, ### for sub sub sections) to ensure proper formatting when pasted into Substack.
 - Within each section or subsection, list entries in alphabetical order by the first word of the entry (typically the author's or organization's name). The exceptions are "Events and Networks" and "Calls for Papers", which should remain in chronological order as noted above.
 
 IMPORTANT:
