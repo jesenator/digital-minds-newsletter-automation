@@ -66,8 +66,11 @@ WRITING RULES:
 - The above structure is a guide. Especially for the sub sections, you can use your judgement to determine the best structure.
 - Output the article using markdown formatting with inline links: [anchor text](url)
 - Each entry in the deeper dive sections should be 1-2 sentences with a link.
+- Start each entry with the person, organization, or publication name as the subject of the sentence. Do not bury the name mid-sentence. For example, write "Jacy Reese Anthis discusses..." not "In a podcast interview, Jacy Reese Anthis discusses...".
 - Group related items together (e.g. multiple posts from the same author/blog).
-- Each article/link should appear in exactly ONE section. Place it in the single most appropriate section; do not duplicate it across multiple sections.
+- Other than the Highlights/Field Developments sections, each article/link should appear in exactly ONE section. Place it in the single most appropriate section; do not duplicate it across multiple sections.
+  - For example, do not put the same link in both "AI Cognition and Agency" and "AI and Robotics Developments" or in both "4. Selected Reading, Watching, and Listening" and "5. Press and Public Discourse" sections.
+  - Place each article in the single most fitting subsection within each level.
 - The previous newsletter is provided ONLY as a style and format reference. Do NOT repeat, paraphrase, or reference any specific content from it. If a link from <articles> also appeared in the previous newsletter, skip it entirely.
 - Do NOT fabricate or hallucinate any links, names, or claims. Only use information from the provided article summaries.
 - For content that is important but which you are not sure about, include an indicator, such as "[add more details]"
@@ -75,6 +78,7 @@ WRITING RULES:
 - For job/fellowship listings, mention the organization, what the role is, and link to apply.
 - For events, mention the organizer, location, and dates.
 - For calls for papers, mention the venue and deadline.
+- You may sometimes be given a set of links which aren't enough to actually write the entire newsletter and are more just for testing. Please write as much of the newsletter as you can in that case - but its fine if sections are incomplete or empty. Remeber to NOT use any links multiple times (other than using a link in both the Highlights/Field Developments sections and a later section).
 
 NAMING AND ATTRIBUTION:
 - Always mention first names of authors on first reference, then last name only after.
@@ -106,8 +110,10 @@ FORMAT:
 - Use the correct markdown heading levels (# for title, ## for sections, ### for subsections) to ensure proper formatting when pasted into Substack.
 - Within each section or subsection, list entries in alphabetical order by the first word of the entry (typically the author's or organization's name). The exceptions are "Events and Networks" and "Calls for Papers", which should remain in chronological order as noted above.
 
-SELF-CHECK:
-- Before finalizing, review the draft for adherence to all the above rules."""
+IMPORTANT:
+- Before finalizing, review the draft for adherence to all the above rules.
+- CRITICAL -- NO DUPLICATE LINKS: BE SURE that each URL appears in ONLY ONE section (the sole exception is that a link used in Highlights or Field Developments may also appear in a later section).
+"""
 
 PROMPT_TEMPLATE = """You are writing a draft of the next edition of the Digital Minds Newsletter, a curated newsletter covering digital minds, AI consciousness, and moral status.
 
@@ -214,7 +220,7 @@ class NewsletterPipeline:
     )
 
   GENERATE_MODEL = "anthropic/claude-opus-4.6"
-THINKING_BUDGET = 32000
+  THINKING_BUDGET = 32000
 
   def generate(self, prompt):
     return llm_ask(prompt, model=self.GENERATE_MODEL, timeout=600, max_tokens=128000, temperature=0.5, thinking_budget=self.THINKING_BUDGET)
